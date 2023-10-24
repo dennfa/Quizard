@@ -6,6 +6,7 @@ import {MultipleChoiceQuiz} from "../Models/MultipleChoiceQuiz.tsx";
 export default function CreateQuiz() {
 
     const [questions, setQuestions] = useState<MultipleChoiceQuestion[]>([])
+    const [quizName, setQuizName] = useState<string>("")
 
     function handleAddQuestion() {
         const newQuestion: MultipleChoiceQuestion = {
@@ -16,32 +17,33 @@ export default function CreateQuiz() {
         setQuestions([...questions, newQuestion]);
     }
 
-    function myCallBackFunction(userInput: string, multipleChoiceProperty: string, index:number){
+    function myCallBackFunction(userInput: string, multipleChoiceProperty: string, index: number) {
         const questions2 = questions.slice()
-        switch(multipleChoiceProperty){
-            case "question": questions2[index].question = userInput
+        switch (multipleChoiceProperty) {
+            case "question":
+                questions2[index].question = userInput
                 break
-            case "falseAnswer": questions2[index].falseAnswer = userInput
+            case "falseAnswer":
+                questions2[index].falseAnswer = userInput
                 break
-            case "trueAnswer": questions2[index].trueAnswer = userInput
+            case "trueAnswer":
+                questions2[index].trueAnswer = userInput
                 break
         }
-
         setQuestions(questions2)
     }
 
     function saveQuiz() {
-        event.preventDefault()
-        const quizData:MultipleChoiceQuiz = {
-            quizName:event.target.elements.quizName.value,
-            multipleChoiceQuestions:questions,
+        const quizData: MultipleChoiceQuiz = {
+            quizName: quizName,
+            multipleChoiceQuestions: questions,
         }
         console.log(quizData)
     }
 
     return (
         <div className="CreateQuiz">
-            <form onSubmit={saveQuiz}>
+            <form>
                 <div className="QuizName">
                     <label htmlFor="quizName">Quiz Name:</label>
                     <input
@@ -49,6 +51,8 @@ export default function CreateQuiz() {
                         id="quizName"
                         name="quizName"
                         placeholder="Enter the name of your quiz here"
+                        value={quizName}
+                        onChange={event=>setQuizName(event.target.value)}
                     />
                 </div>
                 <p>Current number of questions: {questions.length}</p>
@@ -57,9 +61,9 @@ export default function CreateQuiz() {
                     index={index}
                     multipleChoiceQuestion={question}
                     myCallBack={myCallBackFunction}
-                    />)}
+                />)}
                 <button type="button" onClick={handleAddQuestion}>Add Question</button>
-                <button type="submit">Save Quiz</button>
+                <button type="button" onClick={saveQuiz}>Save Quiz</button>
             </form>
         </div>
     )
