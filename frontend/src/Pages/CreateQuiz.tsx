@@ -15,10 +15,17 @@ export default function CreateQuiz() {
         setQuestions([...questions, newQuestion]);
     }
 
-    function myCallBackFunction(questionData:MultipleChoiceQuestion, index:number){
-        console.log(questionData)
+    function myCallBackFunction(userInput: string, multipleChoiceProperty: string, index:number){
         const questions2 = questions.slice()
-        questions2[index] = questionData
+        switch(multipleChoiceProperty){
+            case "question": questions2[index].question = userInput
+                break
+            case "falseAnswer": questions2[index].falseAnswer = userInput
+                break
+            case "trueAnswer": questions2[index].trueAnswer = userInput
+                break
+        }
+
         setQuestions(questions2)
     }
 

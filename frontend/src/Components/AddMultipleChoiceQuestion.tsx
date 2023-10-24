@@ -1,21 +1,12 @@
 import {MultipleChoiceQuestion} from "../Models/MultipleChoiceQuestion.tsx";
-import {useEffect, useState} from "react";
 
 export type props = {
     multipleChoiceQuestion: MultipleChoiceQuestion,
     index: number,
-    myCallBack: (questionData: MultipleChoiceQuestion, index: number) => void,
+    myCallBack: (userInput: string, multipleChoiceProperty: string, index: number) => void,
 }
 
 export default function AddMultipleChoiceQuestion(props: props) {
-
-    const [question, setQuestion] = useState<string>("")
-    const [falseAnswer, setFalseAnswer] = useState<string>("")
-    const [trueAnswer, setTrueAnswer] = useState<string>("")
-
-    useEffect(() => {
-        props.myCallBack({question, falseAnswer, trueAnswer}, props.index)
-    }, [question, falseAnswer, trueAnswer])
 
 
     return (
@@ -26,7 +17,7 @@ export default function AddMultipleChoiceQuestion(props: props) {
                 name="question"
                 type="text"
                 value={props.multipleChoiceQuestion.question}
-                onChange={event => setQuestion(event.target.value)}
+                onChange={event => props.myCallBack(event.target.value,"question",props.index)}
             />
             <label htmlFor="falseAnswer">False Answer:</label>
             <input
@@ -34,7 +25,7 @@ export default function AddMultipleChoiceQuestion(props: props) {
                 name="falseAnswer"
                 type="text"
                 value={props.multipleChoiceQuestion.falseAnswer}
-                onChange={event => setFalseAnswer(event.target.value)}
+                onChange={event => props.myCallBack(event.target.value,"falseAnswer",props.index)}
             />
             <label htmlFor="trueAnswer">True Answer:</label>
             <input
@@ -42,7 +33,7 @@ export default function AddMultipleChoiceQuestion(props: props) {
                 name="trueAnswer"
                 type="text"
                 value={props.multipleChoiceQuestion.trueAnswer}
-                onChange={event => setTrueAnswer(event.target.value)}
+                onChange={event => props.myCallBack(event.target.value,"trueAnswer",props.index)}
             />
         </div>
     )
