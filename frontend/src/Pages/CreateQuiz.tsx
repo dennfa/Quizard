@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {MultipleChoiceQuestion} from "../Models/MultipleChoiceQuestion.tsx";
 import AddMultipleChoiceQuestion from "../Components/AddMultipleChoiceQuestion.tsx";
+import {MultipleChoiceQuiz} from "../Models/MultipleChoiceQuiz.tsx";
 
 export default function CreateQuiz() {
 
@@ -30,12 +31,17 @@ export default function CreateQuiz() {
     }
 
     function saveQuiz() {
-        console.log("Hello")
+        event.preventDefault()
+        const quizData:MultipleChoiceQuiz = {
+            quizName:event.target.elements.quizName.value,
+            multipleChoiceQuestions:questions,
+        }
+        console.log(quizData)
     }
 
     return (
         <div className="CreateQuiz">
-            <form>
+            <form onSubmit={saveQuiz}>
                 <div className="QuizName">
                     <label htmlFor="quizName">Quiz Name:</label>
                     <input
@@ -53,7 +59,7 @@ export default function CreateQuiz() {
                     myCallBack={myCallBackFunction}
                     />)}
                 <button type="button" onClick={handleAddQuestion}>Add Question</button>
-                <button onClick={saveQuiz}>Save Quiz</button>
+                <button type="submit">Save Quiz</button>
             </form>
         </div>
     )
