@@ -2,6 +2,7 @@ import {useState} from "react";
 import {MultipleChoiceQuestion} from "../Models/MultipleChoiceQuestion.tsx";
 import AddMultipleChoiceQuestion from "../Components/AddMultipleChoiceQuestion.tsx";
 import {MultipleChoiceQuiz} from "../Models/MultipleChoiceQuiz.tsx";
+import axios from "axios";
 
 export default function CreateQuiz() {
 
@@ -18,19 +19,19 @@ export default function CreateQuiz() {
     }
 
     function myCallBackFunction(userInput: string, multipleChoiceProperty: string, index: number) {
-        const questions2 = questions.slice()
+        const updatedQuestions = questions.slice()
         switch (multipleChoiceProperty) {
             case "question":
-                questions2[index].question = userInput
+                updatedQuestions[index].question = userInput
                 break
             case "falseAnswer":
-                questions2[index].falseAnswer = userInput
+                updatedQuestions[index].falseAnswer = userInput
                 break
             case "trueAnswer":
-                questions2[index].trueAnswer = userInput
+                updatedQuestions[index].trueAnswer = userInput
                 break
         }
-        setQuestions(questions2)
+        setQuestions(updatedQuestions)
     }
 
     function saveQuiz() {
@@ -38,7 +39,13 @@ export default function CreateQuiz() {
             quizName: quizName,
             multipleChoiceQuestions: questions,
         }
-        console.log(quizData)
+        axios.post("/api/create", quizData)
+            .then(response => {
+                console.log("Successfully saved: ", response.data)
+            })
+            .catch(error => {
+                console.error("Error while saving: ", error)
+            })
     }
 
     return (
@@ -52,7 +59,7 @@ export default function CreateQuiz() {
                         name="quizName"
                         placeholder="Enter the name of your quiz here"
                         value={quizName}
-                        onChange={event=>setQuizName(event.target.value)}
+                        onChange={event => setQuizName(event.target.value)}
                     />
                 </div>
                 <p>Current number of questions: {questions.length}</p>

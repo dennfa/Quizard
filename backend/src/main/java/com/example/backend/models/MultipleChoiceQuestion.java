@@ -1,10 +1,8 @@
-package models;
-
-import java.util.Set;
+package com.example.backend.models;
 
 public record MultipleChoiceQuestion(
         String question,
-        Set<String> falseAnswers,
+        String falseAnswer,
         String trueAnswer
 ) {
 }

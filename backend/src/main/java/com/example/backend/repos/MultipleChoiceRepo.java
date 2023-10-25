@@ -1,6 +1,6 @@
-package repos;
+package com.example.backend.repos;
 
-import models.MultipleChoiceQuiz;
+import com.example.backend.models.MultipleChoiceQuiz;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
