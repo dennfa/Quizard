@@ -1,6 +1,6 @@
 package com.example.backend.controller;
 
-import com.example.backend.models.MultipleChoiceQuizResponse;
+import com.example.backend.models.MultipleChoiceQuiz;
 import lombok.RequiredArgsConstructor;
 import com.example.backend.models.NewMultipleChoiceQuiz;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,7 @@ public class MultipleChoiceController {
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public MultipleChoiceQuizResponse addQuiz(@RequestBody NewMultipleChoiceQuiz newMultipleChoiceQuiz){
+    public MultipleChoiceQuiz addQuiz(@RequestBody NewMultipleChoiceQuiz newMultipleChoiceQuiz){
         return multipleChoiceService.addQuiz(newMultipleChoiceQuiz);
     }
 }

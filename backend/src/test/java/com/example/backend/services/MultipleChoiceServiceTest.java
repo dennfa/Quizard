@@ -2,7 +2,6 @@ package com.example.backend.services;
 
 import com.example.backend.models.MultipleChoiceQuestion;
 import com.example.backend.models.MultipleChoiceQuiz;
-import com.example.backend.models.MultipleChoiceQuizResponse;
 import com.example.backend.models.NewMultipleChoiceQuiz;
 import com.example.backend.repos.MultipleChoiceRepo;
 import com.example.backend.services.mappings.MultipleChoiceMappingService;
@@ -25,8 +24,8 @@ class MultipleChoiceServiceTest {
                 new MultipleChoiceQuestion("q", "fa", "ta")));
     }
 
-    private MultipleChoiceQuizResponse setUp2() {
-        return new MultipleChoiceQuizResponse("1", "quiz", List.of(
+    private MultipleChoiceQuiz setUpNoId() {
+        return new MultipleChoiceQuiz(null, "quiz", List.of(
                 new MultipleChoiceQuestion("q", "fa", "ta")));
     }
 
@@ -37,20 +36,17 @@ class MultipleChoiceServiceTest {
         NewMultipleChoiceQuiz newMultipleChoiceQuiz = new NewMultipleChoiceQuiz("q",
                 List.of(new MultipleChoiceQuestion("q", "fa", "ta")));
 
-        when(multipleChoiceRepo.save(setUp())).thenReturn(setUp());
-        when(multipleChoiceMappingService.mapNewMCQuizToMCQuiz(newMultipleChoiceQuiz)).thenReturn(setUp());
-        when(multipleChoiceMappingService.mapMcQuizToMcQuizResponse(setUp()))
-                .thenReturn(setUp2());
+        when(multipleChoiceRepo.save(setUpNoId())).thenReturn(setUp());
+        when(multipleChoiceMappingService.mapNewMCQuizToMCQuiz(newMultipleChoiceQuiz)).thenReturn(setUpNoId());
 
         //When
-        MultipleChoiceQuizResponse actual = multipleChoiceService.addQuiz(newMultipleChoiceQuiz);
+        MultipleChoiceQuiz actual = multipleChoiceService.addQuiz(newMultipleChoiceQuiz);
 
         //THEN
-        MultipleChoiceQuizResponse expected = setUp2();
+        MultipleChoiceQuiz expected = setUp();
 
-        verify(multipleChoiceRepo).save(setUp());
+        verify(multipleChoiceRepo).save(setUpNoId());
         verify(multipleChoiceMappingService).mapNewMCQuizToMCQuiz(newMultipleChoiceQuiz);
-        verify(multipleChoiceMappingService).mapMcQuizToMcQuizResponse(setUp());
         assertEquals(expected, actual);
     }
 }

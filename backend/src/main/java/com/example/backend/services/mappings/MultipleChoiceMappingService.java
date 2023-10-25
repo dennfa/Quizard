@@ -1,7 +1,6 @@
 package com.example.backend.services.mappings;
 
 import com.example.backend.models.MultipleChoiceQuiz;
-import com.example.backend.models.MultipleChoiceQuizResponse;
 import com.example.backend.models.NewMultipleChoiceQuiz;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +13,5 @@ public class MultipleChoiceMappingService {
                .quizName(nmc.quizName())
                .multipleChoiceQuestions(nmc.multipleChoiceQuestions())
                .build();
-    }
-
-    public MultipleChoiceQuizResponse mapMcQuizToMcQuizResponse(MultipleChoiceQuiz mcq){
-        return MultipleChoiceQuizResponse.builder()
-                .id(mcq.id())
-                .quizName(mcq.quizName())
-                .multipleChoiceQuestions(mcq.multipleChoiceQuestions())
-                .build();
     }
 }
