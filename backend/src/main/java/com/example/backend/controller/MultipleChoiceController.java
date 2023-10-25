@@ -1,12 +1,10 @@
 package com.example.backend.controller;
 
-import com.example.backend.models.MultipleChoiceQuiz;
+import com.example.backend.models.MultipleChoiceQuizResponse;
 import lombok.RequiredArgsConstructor;
 import com.example.backend.models.NewMultipleChoiceQuiz;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import com.example.backend.services.MultipleChoiceService;
 
 @RestController
@@ -17,7 +15,8 @@ public class MultipleChoiceController {
     private final MultipleChoiceService multipleChoiceService;
 
     @PostMapping("/create")
-    public MultipleChoiceQuiz addQuiz(@RequestBody NewMultipleChoiceQuiz newMultipleChoiceQuiz){
+    @ResponseStatus(HttpStatus.CREATED)
+    public MultipleChoiceQuizResponse addQuiz(@RequestBody NewMultipleChoiceQuiz newMultipleChoiceQuiz){
         return multipleChoiceService.addQuiz(newMultipleChoiceQuiz);
     }
 }
