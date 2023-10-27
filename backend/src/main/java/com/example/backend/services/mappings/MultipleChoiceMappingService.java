@@ -10,7 +10,9 @@ public class MultipleChoiceMappingService {
 
     public MultipleChoiceQuiz mapNewMCQuizToMCQuiz(NewMultipleChoiceQuiz nmc){
        return MultipleChoiceQuiz.builder()
-               .quizName(nmc.quizName())
+               .name(nmc.name())
+               .description(nmc.description())
+               .numberOfQuestions(nmc.numberOfQuestions())
                .multipleChoiceQuestions(nmc.multipleChoiceQuestions())
                .build();
     }

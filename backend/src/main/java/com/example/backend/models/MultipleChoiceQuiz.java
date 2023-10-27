@@ -9,7 +9,9 @@ import java.util.List;
 public record MultipleChoiceQuiz(
         @MongoId
         String id,
-        String quizName,
+        String name,
+        String description,
+        int numberOfQuestions,
         List<MultipleChoiceQuestion> multipleChoiceQuestions
 ) {
 }
