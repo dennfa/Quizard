@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import com.example.backend.services.MultipleChoiceService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -18,5 +20,11 @@ public class MultipleChoiceController {
     @ResponseStatus(HttpStatus.CREATED)
     public MultipleChoiceQuiz addQuiz(@RequestBody NewMultipleChoiceQuiz newMultipleChoiceQuiz){
         return multipleChoiceService.addQuiz(newMultipleChoiceQuiz);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<MultipleChoiceQuiz> getAllQuizzes(){
+        return multipleChoiceService.getAllQuizzes();
     }
 }

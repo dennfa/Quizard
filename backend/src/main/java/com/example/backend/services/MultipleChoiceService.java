@@ -7,6 +7,8 @@ import com.example.backend.services.mappings.MultipleChoiceMappingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MultipleChoiceService {
@@ -19,6 +21,9 @@ public class MultipleChoiceService {
                 .mapNewMCQuizToMCQuiz(newMultipleChoiceQuiz);
 
         return multipleChoiceRepo.save(multipleChoiceQuiz);
+    }
 
+    public List<MultipleChoiceQuiz> getAllQuizzes(){
+        return multipleChoiceRepo.findAll();
     }
 }
