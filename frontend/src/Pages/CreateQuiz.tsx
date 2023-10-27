@@ -8,6 +8,7 @@ export default function CreateQuiz() {
 
     const [questions, setQuestions] = useState<MultipleChoiceQuestion[]>([])
     const [quizName, setQuizName] = useState<string>("")
+    const [quizDescription, setQuizDescription] = useState<string>("")
 
     function handleAddQuestion() {
         const newQuestion: MultipleChoiceQuestion = {
@@ -36,7 +37,9 @@ export default function CreateQuiz() {
 
     function saveQuiz() {
         const quizData: MultipleChoiceQuiz = {
-            quizName: quizName,
+            name: quizName,
+            description:quizDescription,
+            numberOfQuestions:questions.length,
             multipleChoiceQuestions: questions,
         }
         axios.post("/api/create", quizData)
@@ -60,6 +63,17 @@ export default function CreateQuiz() {
                         placeholder="Enter the name of your quiz here"
                         value={quizName}
                         onChange={event => setQuizName(event.target.value)}
+                    />
+                </div>
+                <div className="QuizDescription">
+                    <label htmlFor="quizDescription">Quiz Description:</label>
+                    <input
+                        type="text"
+                        id="quizDescription"
+                        name="quizDescription"
+                        placeholder="Describe your quiz here"
+                        value={quizDescription}
+                        onChange={event => setQuizDescription(event.target.value)}
                     />
                 </div>
                 <p>Current number of questions: {questions.length}</p>

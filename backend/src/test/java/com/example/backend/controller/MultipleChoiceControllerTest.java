@@ -23,7 +23,9 @@ class MultipleChoiceControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
-                        "quizName": "name",
+                        "name": "name",
+                        "description": "description",
+                        "numberOfQuestions": 10,
                         "multipleChoiceQuestions": [
                         {"question": "question",
                         "falseAnswer": "falseAnswer",
@@ -34,7 +36,9 @@ class MultipleChoiceControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(content().json("""
                          {
-                        "quizName": "name",
+                        "name": "name",
+                        "description": "description",
+                        "numberOfQuestions": 10,
                         "multipleChoiceQuestions": [
                         {"question": "question",
                         "falseAnswer": "falseAnswer",
