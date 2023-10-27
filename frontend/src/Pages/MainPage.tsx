@@ -9,7 +9,7 @@ export default function MainPage() {
             <div className="MainPage">
                 <button onClick={()=>navigate("/take")}>Take a Quiz</button>
                 <button onClick={()=>navigate("/create")}>Create a Quiz</button>
-                <button>Update a Quiz</button>
+                <button onClick={()=>navigate("/update")}>Update a Quiz</button>
                 </div>
     )
 }
