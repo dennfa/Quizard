@@ -2,7 +2,8 @@ import './App.css'
 import {Route, Routes} from "react-router-dom";
 import MainPage from "./Pages/MainPage.tsx";
 import CreateQuiz from "./Pages/CreateQuiz.tsx";
-import TakeQuiz from "./Pages/TakeQuiz.tsx";
+import TakeQuizList from "./Pages/TakeQuizList.tsx";
+import UpdateQuizList from "./Pages/UpdateQuizList.tsx";
 
 export default function App() {
 
@@ -10,7 +11,8 @@ export default function App() {
     <Routes>
       <Route path="/" element={<MainPage/>}/>
       <Route path="/create" element={<CreateQuiz/>}/>
-      <Route path="/take" element={<TakeQuiz/>}/>
+      <Route path="/take" element={<TakeQuizList/>}/>
+      <Route path="/update" element={<UpdateQuizList/>}/>
     </Routes>
   )
 }

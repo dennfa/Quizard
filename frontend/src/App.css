@@ -49,7 +49,7 @@ input:focus {
     align-self: baseline;
 }
 
-.TakeQuiz {
+.TakeQuizList {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,7 +59,7 @@ input:focus {
     gap: 1rem;
 }
 
-.UpdateQuiz {
+.UpdateQuizList {
     display: flex;
     flex-direction: column;
     align-items: center;
