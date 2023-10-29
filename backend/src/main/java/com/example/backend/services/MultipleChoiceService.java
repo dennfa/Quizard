@@ -17,7 +17,11 @@ public class MultipleChoiceService {
         return multipleChoiceRepo.save(multipleChoiceQuiz);
     }
 
-    public List<MultipleChoiceQuiz> getAllQuizzes(){
+    public List<MultipleChoiceQuiz> getAllQuizzes() {
         return multipleChoiceRepo.findAll();
+    }
+
+    public MultipleChoiceQuiz getQuizById(String id) {
+        return multipleChoiceRepo.findById(id).orElseThrow();
     }
 }

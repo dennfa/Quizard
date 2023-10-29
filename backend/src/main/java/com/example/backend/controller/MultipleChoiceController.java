@@ -26,4 +26,11 @@ public class MultipleChoiceController {
     public List<MultipleChoiceQuiz> getAllQuizzes(){
         return multipleChoiceService.getAllQuizzes();
     }
+
+    @GetMapping("update/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MultipleChoiceQuiz getQuizById(@PathVariable String id){
+
+        return multipleChoiceService.getQuizById(id);
+    }
 }
