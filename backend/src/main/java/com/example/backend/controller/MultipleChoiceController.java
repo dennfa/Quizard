@@ -33,4 +33,11 @@ public class MultipleChoiceController {
 
         return multipleChoiceService.getQuizById(id);
     }
+
+    @PutMapping ("update")
+    @ResponseStatus(HttpStatus.OK)
+    public MultipleChoiceQuiz updateQuizBy(@RequestBody MultipleChoiceQuiz multipleChoiceQuiz){
+
+        return multipleChoiceService.updateQuiz(multipleChoiceQuiz);
+    }
 }

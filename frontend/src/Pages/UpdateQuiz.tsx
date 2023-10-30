@@ -58,7 +58,7 @@ export default function UpdateQuiz() {
             numberOfQuestions: multipleChoiceQuiz.multipleChoiceQuestions.length,
             multipleChoiceQuestions: multipleChoiceQuiz.multipleChoiceQuestions,
         }
-        axios.post("/api/update", quizData)
+        axios.put("/api/update", quizData)
             .then(response => {
                 console.log("Successfully saved: ", response.data)
             })
