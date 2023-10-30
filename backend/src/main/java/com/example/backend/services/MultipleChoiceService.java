@@ -26,8 +26,8 @@ public class MultipleChoiceService {
     }
 
     public MultipleChoiceQuiz updateQuiz(MultipleChoiceQuiz multipleChoiceQuiz){
-        multipleChoiceRepo.findById(multipleChoiceQuiz.id()).orElseThrow();
-        return multipleChoiceRepo.save(multipleChoiceQuiz);
+        MultipleChoiceQuiz quiz = multipleChoiceRepo.findById(multipleChoiceQuiz.id()).orElseThrow();
+        return multipleChoiceRepo.save(quiz);
     }
 
     public void deleteQuiz( String id){
