@@ -37,6 +37,13 @@ export default function UpdateQuiz() {
         });
     }
 
+    function handleDeleteQuestion(index: number) {
+        const updatedQuestions = multipleChoiceQuiz.multipleChoiceQuestions.filter((_, i) => i !== index)
+        setMultipleChoiceQuiz({
+            ...multipleChoiceQuiz, multipleChoiceQuestions: updatedQuestions
+        })
+    }
+
     function myCallBackFunction(userInput: string, multipleChoiceProperty: string, index: number) {
         const updatedQuestions = multipleChoiceQuiz.multipleChoiceQuestions.slice()
         switch (multipleChoiceProperty) {
@@ -71,7 +78,7 @@ export default function UpdateQuiz() {
 
     function deleteQuiz() {
         axios.delete("/api/update/" + id)
-            .then(() =>navigate("/update"))
+            .then(() => navigate("/update"))
             .catch(error => {
                 console.error("Error during delete:", error)
             })
@@ -108,15 +115,19 @@ export default function UpdateQuiz() {
                 </div>
                 <p>Current number of questions: {multipleChoiceQuiz.multipleChoiceQuestions.length}</p>
                 {multipleChoiceQuiz.multipleChoiceQuestions.map((question: MultipleChoiceQuestion, index: number) =>
-                    <AddMultipleChoiceQuestion
-                        key={index}
-                        index={index}
-                        multipleChoiceQuestion={question}
-                        myCallBack={myCallBackFunction}
-                    />)}
+                    <div key={index}>
+                        <AddMultipleChoiceQuestion
+                            key={index}
+                            index={index}
+                            multipleChoiceQuestion={question}
+                            myCallBack={myCallBackFunction}
+                        />
+                        <button type="button" onClick={() => handleDeleteQuestion(index)}>Delete Question</button>
+                    </div>)}
                 <button type="button" onClick={handleAddQuestion}>Add Question</button>
                 <button type="button" onClick={saveQuiz}>Save Quiz</button>
                 <button type="button" onClick={deleteQuiz}>Delete Quiz</button>
+                <button type="button" onClick={() => navigate("/update")}>Discard Changes</button>
             </form>
         </div>
     )

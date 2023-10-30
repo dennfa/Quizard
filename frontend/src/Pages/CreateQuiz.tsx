@@ -21,7 +21,7 @@ export default function CreateQuiz() {
         setQuestions([...questions, newQuestion]);
     }
 
-    function handleDeleteQuestion(index:number){
+    function handleDeleteQuestion(index: number) {
         const updatedQuestions = questions.filter((_, i) => i !== index)
         setQuestions(updatedQuestions)
     }
@@ -82,17 +82,17 @@ export default function CreateQuiz() {
                     />
                 </div>
                 <p>Current number of questions: {questions.length}</p>
-                {questions.map((question: MultipleChoiceQuestion, index: number) => {
-                    return (<div key={index}>
+                {questions.map((question: MultipleChoiceQuestion, index: number) =>
+                    <div key={index}>
                         <AddMultipleChoiceQuestion
-                        key={index}
-                        index={index}
-                        multipleChoiceQuestion={question}
-                        myCallBack={myCallBackFunction}
-                    />
-                    <button type="button" onClick={()=>handleDeleteQuestion(index)}>Delete Question</button>
-                    </div>)
-                })}
+                            key={index}
+                            index={index}
+                            multipleChoiceQuestion={question}
+                            myCallBack={myCallBackFunction}
+                        />
+                        <button type="button" onClick={() => handleDeleteQuestion(index)}>Delete Question</button>
+                    </div>
+                )}
                 <button type="button" onClick={handleAddQuestion}>Add Question</button>
                 <button type="button" onClick={saveQuiz}>Save Quiz</button>
                 <button type="button" onClick={() => navigate("/")}>Discard Quiz</button>
