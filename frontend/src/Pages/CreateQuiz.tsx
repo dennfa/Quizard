@@ -59,6 +59,7 @@ export default function CreateQuiz() {
     return (
         <div className="CreateQuiz">
             <form>
+                <button type="button" onClick={() => navigate("/")}>Discard Quiz</button>
                 <div className="QuizName">
                     <label htmlFor="quizName">Quiz Name:</label>
                     <input
@@ -95,7 +96,6 @@ export default function CreateQuiz() {
                 )}
                 <button type="button" onClick={handleAddQuestion}>Add Question</button>
                 <button type="button" onClick={saveQuiz}>Save Quiz</button>
-                <button type="button" onClick={() => navigate("/")}>Discard Quiz</button>
             </form>
         </div>
     )

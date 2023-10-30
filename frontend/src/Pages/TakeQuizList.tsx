@@ -2,10 +2,12 @@ import {useEffect, useState} from "react";
 import {MultipleChoiceQuiz} from "../Models/MultipleChoiceQuiz.tsx";
 import axios from "axios";
 import QuizCard from "../Components/QuizCard.tsx";
+import {useNavigate} from "react-router-dom";
 
 export default function TakeQuizList() {
 
     const [multipleChoiceQuizzes, setMultipleChoiceQuizzes] = useState<MultipleChoiceQuiz[]>([])
+    const navigate = useNavigate()
 
     useEffect(()=>
     {
@@ -20,6 +22,7 @@ export default function TakeQuizList() {
 
     return (
         <div className="TakeQuizList">
+            <button type="button" onClick={()=>navigate("/")}>Back</button>
             {multipleChoiceQuizzes.map((quiz)=>
                 <QuizCard key={quiz.id} multipleChoiceQuiz={quiz}></QuizCard>)}
         </div>
