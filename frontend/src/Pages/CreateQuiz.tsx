@@ -22,9 +22,7 @@ export default function CreateQuiz() {
     }
 
     function handleDeleteQuestion(index:number){
-        const updatedQuestions = [...questions]
-        console.log(index)
-        updatedQuestions.slice(index)
+        const updatedQuestions = questions.filter((_, i) => i !== index)
         setQuestions(updatedQuestions)
     }
 
@@ -85,7 +83,7 @@ export default function CreateQuiz() {
                 </div>
                 <p>Current number of questions: {questions.length}</p>
                 {questions.map((question: MultipleChoiceQuestion, index: number) => {
-                    return (<div>
+                    return (<div key={index}>
                         <AddMultipleChoiceQuestion
                         key={index}
                         index={index}
