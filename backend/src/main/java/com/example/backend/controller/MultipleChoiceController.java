@@ -40,4 +40,10 @@ public class MultipleChoiceController {
 
         return multipleChoiceService.updateQuiz(multipleChoiceQuiz);
     }
+
+    @DeleteMapping ("update/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteQuiz(@PathVariable String id){
+        multipleChoiceService.deleteQuiz(id);
+    }
 }

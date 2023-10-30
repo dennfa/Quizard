@@ -29,4 +29,8 @@ public class MultipleChoiceService {
         multipleChoiceRepo.findById(multipleChoiceQuiz.id()).orElseThrow();
         return multipleChoiceRepo.save(multipleChoiceQuiz);
     }
+
+    public void deleteQuiz( String id){
+        multipleChoiceRepo.deleteById(id);
+    }
 }

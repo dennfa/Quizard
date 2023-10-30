@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {MultipleChoiceQuiz} from "../Models/MultipleChoiceQuiz.tsx";
@@ -9,9 +9,10 @@ export default function UpdateQuiz() {
 
     const {id} = useParams();
     const [multipleChoiceQuiz, setMultipleChoiceQuiz] = useState<MultipleChoiceQuiz>({
-        name:"", description:"", numberOfQuestions:0,
+        name: "", description: "", numberOfQuestions: 0,
         multipleChoiceQuestions: [],
-    } )
+    })
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get("/api/update/" + id)
@@ -30,8 +31,10 @@ export default function UpdateQuiz() {
             falseAnswer: "",
             trueAnswer: "",
         }
-        setMultipleChoiceQuiz({...multipleChoiceQuiz,multipleChoiceQuestions:[
-            ...multipleChoiceQuiz.multipleChoiceQuestions, newQuestion]});
+        setMultipleChoiceQuiz({
+            ...multipleChoiceQuiz, multipleChoiceQuestions: [
+                ...multipleChoiceQuiz.multipleChoiceQuestions, newQuestion]
+        });
     }
 
     function myCallBackFunction(userInput: string, multipleChoiceProperty: string, index: number) {
@@ -47,7 +50,7 @@ export default function UpdateQuiz() {
                 updatedQuestions[index].trueAnswer = userInput
                 break
         }
-        setMultipleChoiceQuiz({...multipleChoiceQuiz,multipleChoiceQuestions:updatedQuestions})
+        setMultipleChoiceQuiz({...multipleChoiceQuiz, multipleChoiceQuestions: updatedQuestions})
     }
 
     function saveQuiz() {
@@ -59,11 +62,18 @@ export default function UpdateQuiz() {
             multipleChoiceQuestions: multipleChoiceQuiz.multipleChoiceQuestions,
         }
         axios.put("/api/update", quizData)
-            .then(response => {
-                console.log("Successfully saved: ", response.data)
-            })
+            .then(() => navigate("/update")
+            )
             .catch(error => {
                 console.error("Error while saving: ", error)
+            })
+    }
+
+    function deleteQuiz() {
+        axios.delete("/api/update/" + id)
+            .then(() =>navigate("/update"))
+            .catch(error => {
+                console.error("Error during delete:", error)
             })
     }
 
@@ -79,7 +89,8 @@ export default function UpdateQuiz() {
                         placeholder="Enter the name of your quiz here"
                         value={multipleChoiceQuiz.name}
                         onChange={event => setMultipleChoiceQuiz({
-                            ...multipleChoiceQuiz, name: event.target.value})}
+                            ...multipleChoiceQuiz, name: event.target.value
+                        })}
                     />
                 </div>
                 <div className="QuizDescription">
@@ -91,19 +102,21 @@ export default function UpdateQuiz() {
                         placeholder="Describe your quiz here"
                         value={multipleChoiceQuiz.description}
                         onChange={event => setMultipleChoiceQuiz({
-                            ...multipleChoiceQuiz, description: event.target.value})}
+                            ...multipleChoiceQuiz, description: event.target.value
+                        })}
                     />
                 </div>
                 <p>Current number of questions: {multipleChoiceQuiz.multipleChoiceQuestions.length}</p>
                 {multipleChoiceQuiz.multipleChoiceQuestions.map((question: MultipleChoiceQuestion, index: number) =>
                     <AddMultipleChoiceQuestion
-                    key={index}
-                    index={index}
-                    multipleChoiceQuestion={question}
-                    myCallBack={myCallBackFunction}
-                />)}
+                        key={index}
+                        index={index}
+                        multipleChoiceQuestion={question}
+                        myCallBack={myCallBackFunction}
+                    />)}
                 <button type="button" onClick={handleAddQuestion}>Add Question</button>
                 <button type="button" onClick={saveQuiz}>Save Quiz</button>
+                <button type="button" onClick={deleteQuiz}>Delete Quiz</button>
             </form>
         </div>
     )
