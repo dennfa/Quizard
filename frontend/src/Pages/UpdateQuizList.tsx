@@ -22,8 +22,8 @@ export default function UpdateQuizList() {
 
     return (
         <div className="UpdateQuizList">
-            {multipleChoiceQuizzes.map((quiz)=>
-                <button onClick={()=>navigate("" + quiz.id)}>
+            {multipleChoiceQuizzes.map((quiz, index)=>
+                <button  key = {index} onClick={()=>navigate("" + quiz.id)}>
                 <QuizCard key={quiz.id} multipleChoiceQuiz={quiz}></QuizCard>
                 </button>)}
         </div>
