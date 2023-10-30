@@ -3,12 +3,14 @@ import {MultipleChoiceQuestion} from "../Models/MultipleChoiceQuestion.tsx";
 import AddMultipleChoiceQuestion from "../Components/AddMultipleChoiceQuestion.tsx";
 import {MultipleChoiceQuiz} from "../Models/MultipleChoiceQuiz.tsx";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 export default function CreateQuiz() {
 
     const [questions, setQuestions] = useState<MultipleChoiceQuestion[]>([])
     const [quizName, setQuizName] = useState<string>("")
     const [quizDescription, setQuizDescription] = useState<string>("")
+    const navigate = useNavigate()
 
     function handleAddQuestion() {
         const newQuestion: MultipleChoiceQuestion = {
@@ -43,9 +45,7 @@ export default function CreateQuiz() {
             multipleChoiceQuestions: questions,
         }
         axios.post("/api/create", quizData)
-            .then(response => {
-                console.log("Successfully saved: ", response.data)
-            })
+            .then(()=>navigate("/"))
             .catch(error => {
                 console.error("Error while saving: ", error)
             })
@@ -85,6 +85,7 @@ export default function CreateQuiz() {
                 />)}
                 <button type="button" onClick={handleAddQuestion}>Add Question</button>
                 <button type="button" onClick={saveQuiz}>Save Quiz</button>
+                <button type="button" onClick={()=>navigate("/")}>Discard Quiz</button>
             </form>
         </div>
     )
