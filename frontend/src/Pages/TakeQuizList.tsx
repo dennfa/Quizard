@@ -23,8 +23,10 @@ export default function TakeQuizList() {
     return (
         <div className="TakeQuizList">
             <button type="button" onClick={()=>navigate("/")}>Back</button>
-            {multipleChoiceQuizzes.map((quiz)=>
-                <QuizCard key={quiz.id} multipleChoiceQuiz={quiz}></QuizCard>)}
+            {multipleChoiceQuizzes.map((quiz, index)=>
+                <button  key = {index} onClick={()=>navigate("" + quiz.id)}>
+                    <QuizCard key={quiz.id} multipleChoiceQuiz={quiz}></QuizCard>
+                </button>)}
         </div>
     )
 }
