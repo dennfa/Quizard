@@ -48,3 +48,40 @@ input:focus {
 .CreateQuiz .QuizName label {
     align-self: baseline;
 }
+
+.TakeQuizList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    font-size: 2rem;
+    gap: 1rem;
+}
+
+.UpdateQuizList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    font-size: 2rem;
+    gap: 1rem;
+}
+
+.QuizCard {
+    border: solid black 5px;
+    border-radius: 10px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.QuizCard h2{
+    margin:2px;
+}
+
+.QuizCard p{
+    margin:2px;
+    font-size: 15px;
+}

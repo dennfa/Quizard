@@ -3,11 +3,14 @@ import {MultipleChoiceQuestion} from "../Models/MultipleChoiceQuestion.tsx";
 import AddMultipleChoiceQuestion from "../Components/AddMultipleChoiceQuestion.tsx";
 import {MultipleChoiceQuiz} from "../Models/MultipleChoiceQuiz.tsx";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 export default function CreateQuiz() {
 
     const [questions, setQuestions] = useState<MultipleChoiceQuestion[]>([])
     const [quizName, setQuizName] = useState<string>("")
+    const [quizDescription, setQuizDescription] = useState<string>("")
+    const navigate = useNavigate()
 
     function handleAddQuestion() {
         const newQuestion: MultipleChoiceQuestion = {
@@ -16,6 +19,11 @@ export default function CreateQuiz() {
             trueAnswer: "",
         }
         setQuestions([...questions, newQuestion]);
+    }
+
+    function handleDeleteQuestion(index: number) {
+        const updatedQuestions = questions.filter((_, i) => i !== index)
+        setQuestions(updatedQuestions)
     }
 
     function myCallBackFunction(userInput: string, multipleChoiceProperty: string, index: number) {
@@ -36,13 +44,13 @@ export default function CreateQuiz() {
 
     function saveQuiz() {
         const quizData: MultipleChoiceQuiz = {
-            quizName: quizName,
+            name: quizName,
+            description: quizDescription,
+            numberOfQuestions: questions.length,
             multipleChoiceQuestions: questions,
         }
         axios.post("/api/create", quizData)
-            .then(response => {
-                console.log("Successfully saved: ", response.data)
-            })
+            .then(() => navigate("/"))
             .catch(error => {
                 console.error("Error while saving: ", error)
             })
@@ -51,6 +59,7 @@ export default function CreateQuiz() {
     return (
         <div className="CreateQuiz">
             <form>
+                <button type="button" onClick={() => navigate("/")}>Discard Quiz</button>
                 <div className="QuizName">
                     <label htmlFor="quizName">Quiz Name:</label>
                     <input
@@ -62,13 +71,29 @@ export default function CreateQuiz() {
                         onChange={event => setQuizName(event.target.value)}
                     />
                 </div>
+                <div className="QuizDescription">
+                    <label htmlFor="quizDescription">Quiz Description:</label>
+                    <input
+                        type="text"
+                        id="quizDescription"
+                        name="quizDescription"
+                        placeholder="Describe your quiz here"
+                        value={quizDescription}
+                        onChange={event => setQuizDescription(event.target.value)}
+                    />
+                </div>
                 <p>Current number of questions: {questions.length}</p>
-                {questions.map((question: MultipleChoiceQuestion, index: number) => <AddMultipleChoiceQuestion
-                    key={index}
-                    index={index}
-                    multipleChoiceQuestion={question}
-                    myCallBack={myCallBackFunction}
-                />)}
+                {questions.map((question: MultipleChoiceQuestion, index: number) =>
+                    <div key={index}>
+                        <AddMultipleChoiceQuestion
+                            key={index}
+                            index={index}
+                            multipleChoiceQuestion={question}
+                            myCallBack={myCallBackFunction}
+                        />
+                        <button type="button" onClick={() => handleDeleteQuestion(index)}>Delete Question</button>
+                    </div>
+                )}
                 <button type="button" onClick={handleAddQuestion}>Add Question</button>
                 <button type="button" onClick={saveQuiz}>Save Quiz</button>
             </form>

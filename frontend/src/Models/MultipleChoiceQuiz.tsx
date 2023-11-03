@@ -1,6 +1,9 @@
 import {MultipleChoiceQuestion} from "./MultipleChoiceQuestion.tsx";
 
 export type MultipleChoiceQuiz = {
-    quizName:string,
+    id?:string,
+    name:string,
+    description:string,
+    numberOfQuestions:number,
     multipleChoiceQuestions:MultipleChoiceQuestion[],
 }
