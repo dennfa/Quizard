@@ -27,21 +27,21 @@ public class MultipleChoiceController {
         return multipleChoiceService.getAllQuizzes();
     }
 
-    @GetMapping("update/{id}")
+    @GetMapping("/update/{id}")
     @ResponseStatus(HttpStatus.OK)
     public MultipleChoiceQuiz getQuizById(@PathVariable String id){
 
         return multipleChoiceService.getQuizById(id);
     }
 
-    @PutMapping ("update")
+    @PutMapping ("/update")
     @ResponseStatus(HttpStatus.OK)
-    public MultipleChoiceQuiz updateQuizBy(@RequestBody MultipleChoiceQuiz multipleChoiceQuiz){
+    public MultipleChoiceQuiz updateQuiz(@RequestBody MultipleChoiceQuiz multipleChoiceQuiz){
 
         return multipleChoiceService.updateQuiz(multipleChoiceQuiz);
     }
 
-    @DeleteMapping ("update/{id}")
+    @DeleteMapping ("/update/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteQuiz(@PathVariable String id){
         multipleChoiceService.deleteQuiz(id);

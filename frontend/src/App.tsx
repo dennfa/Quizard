@@ -1,5 +1,5 @@
 import './App.css'
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import MainPage from "./Pages/MainPage.tsx";
 import CreateQuiz from "./Pages/CreateQuiz.tsx";
 import TakeQuizList from "./Pages/TakeQuizList.tsx";
@@ -15,6 +15,7 @@ export default function App() {
       <Route path="/take" element={<TakeQuizList/>}/>
       <Route path="/update" element={<UpdateQuizList/>}/>
       <Route path="/update/:id" element={<UpdateQuiz/>}/>
+      <Route path="/*" element={<Navigate to={"/"}/>}/>
     </Routes>
   )
 }

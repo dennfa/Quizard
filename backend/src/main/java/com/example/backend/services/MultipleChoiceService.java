@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -26,8 +27,8 @@ public class MultipleChoiceService {
     }
 
     public MultipleChoiceQuiz updateQuiz(MultipleChoiceQuiz multipleChoiceQuiz){
-        MultipleChoiceQuiz quiz = multipleChoiceRepo.findById(multipleChoiceQuiz.id()).orElseThrow();
-        return multipleChoiceRepo.save(quiz);
+        if(multipleChoiceRepo.findById(multipleChoiceQuiz.id()).isEmpty()) throw new NoSuchElementException();
+        return multipleChoiceRepo.save(multipleChoiceQuiz);
     }
 
     public void deleteQuiz( String id){
