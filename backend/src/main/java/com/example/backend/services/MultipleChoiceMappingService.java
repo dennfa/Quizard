@@ -6,8 +6,9 @@ import com.example.backend.models.play.PlayMultipleChoiceQuiz;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 
 @Service
@@ -17,11 +18,15 @@ public class MultipleChoiceMappingService {
     public PlayMultipleChoiceQuiz mapMultipleChoiceQuizToPlayMcq(MultipleChoiceQuiz mcq) {
 
         List<PlayMultipleChoiceQuestion> pmcqList = mcq.multipleChoiceQuestions()
-                .stream().map(mcqQuestion ->
-                        PlayMultipleChoiceQuestion.builder()
-                                .question(mcqQuestion.question())
-                                .answers(Set.of(mcqQuestion.falseAnswer(), mcqQuestion.trueAnswer()))
-                                .build()
+                .stream().map(mcqQuestion -> {
+                            List<String> answers = new ArrayList<>(List.of(mcqQuestion.falseAnswer(), mcqQuestion.trueAnswer()));
+                            Collections.shuffle(answers);
+
+                            return PlayMultipleChoiceQuestion.builder()
+                                    .question(mcqQuestion.question())
+                                    .answers(answers)
+                                    .build();
+                        }
                 ).toList();
 
 
