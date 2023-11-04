@@ -27,7 +27,7 @@ public class MultipleChoiceMappingService {
 
         return PlayMultipleChoiceQuiz.builder()
                 .id(mcq.id())
-                .name(mcq.id())
+                .name(mcq.name())
                 .description(mcq.description())
                 .numberOfQuestions(mcq.numberOfQuestions())
                 .playMultipleChoiceQuestions(pmcqList)
