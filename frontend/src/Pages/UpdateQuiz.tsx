@@ -117,7 +117,7 @@ export default function UpdateQuiz() {
                 {multipleChoiceQuiz.multipleChoiceQuestions.map((question: MultipleChoiceQuestion, index: number) =>
                     <div key={index}>
                         <AddMultipleChoiceQuestion
-                            key={index}
+                            key={question+index.toString()}
                             index={index}
                             multipleChoiceQuestion={question}
                             myCallBack={myCallBackFunction}

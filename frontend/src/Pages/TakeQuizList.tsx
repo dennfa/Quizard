@@ -1,19 +1,19 @@
 import {useEffect, useState} from "react";
-import {MultipleChoiceQuiz} from "../Models/MultipleChoiceQuiz.tsx";
 import axios from "axios";
-import QuizCard from "../Components/QuizCard.tsx";
 import {useNavigate} from "react-router-dom";
+import {PlayMultipleChoiceQuiz} from "../Models/play/PlayMultipleChoiceQuiz.tsx";
+import PlayQuizCard from "../Components/play/PlayQuizCard.tsx";
 
 export default function TakeQuizList() {
 
-    const [multipleChoiceQuizzes, setMultipleChoiceQuizzes] = useState<MultipleChoiceQuiz[]>([])
+    const [playMultipleChoiceQuizzes, setPlayMultipleChoiceQuizzes] = useState<PlayMultipleChoiceQuiz[]>([])
     const navigate = useNavigate()
 
     useEffect(()=>
     {
-        axios.get("/api")
+        axios.get("/api/take")
             .then(response => {
-                setMultipleChoiceQuizzes(response.data)
+                setPlayMultipleChoiceQuizzes(response.data)
             })
             .catch(error => {
                 console.error("Error during quiz loading: ", error)
@@ -23,9 +23,9 @@ export default function TakeQuizList() {
     return (
         <div className="TakeQuizList">
             <button type="button" onClick={()=>navigate("/")}>Back</button>
-            {multipleChoiceQuizzes.map((quiz, index)=>
-                <button  key = {index} onClick={()=>navigate("" + quiz.id)}>
-                    <QuizCard key={quiz.id} multipleChoiceQuiz={quiz}></QuizCard>
+            {playMultipleChoiceQuizzes.map(quiz=>
+                <button  key = {quiz.id} onClick={()=>navigate("" + quiz.id)}>
+                    <PlayQuizCard key={quiz.id} playMultipleChoiceQuiz={quiz}></PlayQuizCard>
                 </button>)}
         </div>
     )

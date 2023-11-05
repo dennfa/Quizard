@@ -1,9 +1,9 @@
 import {MultipleChoiceQuestion} from "../Models/MultipleChoiceQuestion.tsx";
 
 export type props = {
-    multipleChoiceQuestion: MultipleChoiceQuestion,
-    index: number,
-    myCallBack: (userInput: string, multipleChoiceProperty: string, index: number) => void,
+    readonly multipleChoiceQuestion: MultipleChoiceQuestion,
+    readonly index: number,
+    readonly myCallBack: (userInput: string, multipleChoiceProperty: string, index: number) => void,
 }
 
 export default function AddMultipleChoiceQuestion(props: props) {

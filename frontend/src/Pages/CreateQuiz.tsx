@@ -86,7 +86,7 @@ export default function CreateQuiz() {
                 {questions.map((question: MultipleChoiceQuestion, index: number) =>
                     <div key={index}>
                         <AddMultipleChoiceQuestion
-                            key={index}
+                            key={question + index.toString()}
                             index={index}
                             multipleChoiceQuestion={question}
                             myCallBack={myCallBackFunction}

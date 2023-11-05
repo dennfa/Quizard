@@ -1,12 +1,14 @@
 package com.example.backend.models.play;
 
-import java.util.List;
+import lombok.Builder;
 
+import java.util.List;
+@Builder
 public record PlayMultipleChoiceQuiz(
         String id,
         String name,
         String description,
         int numberOfQuestions,
-        List<PlayMultipleChoiceQuestions> playMultipleChoiceQuestions
+        List<PlayMultipleChoiceQuestion> playMultipleChoiceQuestions
 ) {
 }

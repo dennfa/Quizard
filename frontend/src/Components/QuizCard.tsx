@@ -1,7 +1,7 @@
 import {MultipleChoiceQuiz} from "../Models/MultipleChoiceQuiz.tsx";
 
 export type props = {
-    multipleChoiceQuiz:MultipleChoiceQuiz,
+    readonly multipleChoiceQuiz:MultipleChoiceQuiz,
 }
 
 export default function QuizCard(props:props){

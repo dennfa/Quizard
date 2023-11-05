@@ -18,17 +18,16 @@ public class MultipleChoiceMappingService {
     public PlayMultipleChoiceQuiz mapMultipleChoiceQuizToPlayMcq(MultipleChoiceQuiz mcq) {
 
         List<PlayMultipleChoiceQuestion> pmcqList = mcq.multipleChoiceQuestions()
-                .stream().map(mcqQuestion -> {
-                            List<String> answers = new ArrayList<>(List.of(mcqQuestion.falseAnswer(), mcqQuestion.trueAnswer()));
+                .stream().map(mcQuestion -> {
+                            List<String> answers = new ArrayList<>(List.of(mcQuestion.falseAnswer(), mcQuestion.trueAnswer()));
                             Collections.shuffle(answers);
 
                             return PlayMultipleChoiceQuestion.builder()
-                                    .question(mcqQuestion.question())
+                                    .question(mcQuestion.question())
                                     .answers(answers)
                                     .build();
                         }
                 ).toList();
-
 
         return PlayMultipleChoiceQuiz.builder()
                 .id(mcq.id())
