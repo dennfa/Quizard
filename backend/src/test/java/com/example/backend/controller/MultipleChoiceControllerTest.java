@@ -36,11 +36,10 @@ class MultipleChoiceControllerTest {
                 .content("""
                         {
                         "name": "name",
-                        "description": "description",
                         "numberOfQuestions": 10,
                         "multipleChoiceQuestions": [
                         {"question": "question",
-                        "falseAnswer": "falseAnswer",
+                        "falseAnswers": ["1", "2", "3"],
                         "trueAnswer": "trueAnswer"
                         }]
                         }
@@ -49,11 +48,10 @@ class MultipleChoiceControllerTest {
                 .andExpect(content().json("""
                          {
                         "name": "name",
-                        "description": "description",
                         "numberOfQuestions": 10,
                         "multipleChoiceQuestions": [
                         {"question": "question",
-                        "falseAnswer": "falseAnswer",
+                        "falseAnswers": ["1", "2", "3"],
                         "trueAnswer": "trueAnswer"
                         }]
                         }
@@ -63,21 +61,22 @@ class MultipleChoiceControllerTest {
     }
 
     @Test
+    @DirtiesContext
     void getAllQuizzes() throws Exception{
 
-        multipleChoiceRepo.save(new MultipleChoiceQuiz("1", "quiz", "d", 10, List.of(
-                new MultipleChoiceQuestion("q", "fa", "ta"))));
+        multipleChoiceRepo.save(new MultipleChoiceQuiz("1", "quiz", 10, List.of(
+                new MultipleChoiceQuestion("q", List.of("1","2","3"), "ta"))));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
                          [{
+                         "id": "1",
                         "name": "quiz",
-                        "description": "d",
                         "numberOfQuestions": 10,
                         "multipleChoiceQuestions": [
                         {"question": "q",
-                        "falseAnswer": "fa",
+                        "falseAnswers": ["1", "2", "3"],
                         "trueAnswer": "ta"
                         }]
                         }]
@@ -85,10 +84,11 @@ class MultipleChoiceControllerTest {
     }
 
     @Test
+    @DirtiesContext
     void getQuizById() throws Exception{
 
-        multipleChoiceRepo.save(new MultipleChoiceQuiz("1", "quiz", "d", 10, List.of(
-                new MultipleChoiceQuestion("q", "fa", "ta"))));
+        multipleChoiceRepo.save(new MultipleChoiceQuiz("1", "quiz", 10, List.of(
+                new MultipleChoiceQuestion("q", List.of("1","2","3"), "ta"))));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/update/1"))
                 .andExpect(status().isOk())
@@ -96,11 +96,10 @@ class MultipleChoiceControllerTest {
                          {
                          "id": "1",
                         "name": "quiz",
-                        "description": "d",
                         "numberOfQuestions": 10,
                         "multipleChoiceQuestions": [
                         {"question": "q",
-                        "falseAnswer": "fa",
+                        "falseAnswers": ["1", "2", "3"],
                         "trueAnswer": "ta"
                         }]
                         }
@@ -108,10 +107,11 @@ class MultipleChoiceControllerTest {
     }
 
     @Test
+    @DirtiesContext
     void updateQuizBy() throws Exception{
 
-        multipleChoiceRepo.save(new MultipleChoiceQuiz("1", "quiz", "d", 10, List.of(
-                new MultipleChoiceQuestion("q", "fa", "ta"))));
+        multipleChoiceRepo.save(new MultipleChoiceQuiz("1", "quiz", 10, List.of(
+                new MultipleChoiceQuestion("q", List.of("1","2","3"), "ta"))));
 
         mockMvc.perform(MockMvcRequestBuilders.put("/api/update")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -119,11 +119,10 @@ class MultipleChoiceControllerTest {
                         {
                         "id": "1",
                         "name": "name",
-                        "description": "description",
                         "numberOfQuestions": 10,
                         "multipleChoiceQuestions": [
                         {"question": "question",
-                        "falseAnswer": "falseAnswer",
+                        "falseAnswers": ["1","2","3"],
                         "trueAnswer": "trueAnswer"
                         }]
                         }
@@ -132,11 +131,10 @@ class MultipleChoiceControllerTest {
                 .andExpect(content().json("""
                          {
                         "name": "name",
-                        "description": "description",
                         "numberOfQuestions": 10,
                         "multipleChoiceQuestions": [
                         {"question": "question",
-                        "falseAnswer": "falseAnswer",
+                        "falseAnswers": ["1","2","3"],
                         "trueAnswer": "trueAnswer"
                         }]
                         }
@@ -144,10 +142,11 @@ class MultipleChoiceControllerTest {
     }
 
     @Test
+    @DirtiesContext
     void deleteQuiz() throws Exception{
 
-        multipleChoiceRepo.save(new MultipleChoiceQuiz("1", "quiz", "d", 10, List.of(
-                new MultipleChoiceQuestion("q", "fa", "ta"))));
+        multipleChoiceRepo.save(new MultipleChoiceQuiz("1", "quiz", 10, List.of(
+                new MultipleChoiceQuestion("q",List.of("1","2",""), "ta"))));
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/update/1"))
                 .andExpect(status().isOk());

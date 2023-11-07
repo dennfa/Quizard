@@ -9,7 +9,7 @@ export default function UpdateQuiz() {
 
     const {id} = useParams();
     const [multipleChoiceQuiz, setMultipleChoiceQuiz] = useState<MultipleChoiceQuiz>({
-        name: "", description: "", numberOfQuestions: 0,
+        name: "", numberOfQuestions: 0,
         multipleChoiceQuestions: [],
     })
     const navigate = useNavigate()
@@ -28,7 +28,7 @@ export default function UpdateQuiz() {
     function handleAddQuestion() {
         const newQuestion: MultipleChoiceQuestion = {
             question: "",
-            falseAnswer: "",
+            falseAnswers: ["","",""],
             trueAnswer: "",
         }
         setMultipleChoiceQuiz({
@@ -50,8 +50,14 @@ export default function UpdateQuiz() {
             case "question":
                 updatedQuestions[index].question = userInput
                 break
-            case "falseAnswer":
-                updatedQuestions[index].falseAnswer = userInput
+            case "falseAnswer1":
+                updatedQuestions[index].falseAnswers[0] = userInput
+                break
+            case "falseAnswer2":
+                updatedQuestions[index].falseAnswers[1] = userInput
+                break
+            case "falseAnswer3":
+                updatedQuestions[index].falseAnswers[2] = userInput
                 break
             case "trueAnswer":
                 updatedQuestions[index].trueAnswer = userInput
@@ -64,7 +70,6 @@ export default function UpdateQuiz() {
         const quizData: MultipleChoiceQuiz = {
             id: multipleChoiceQuiz.id,
             name: multipleChoiceQuiz.name,
-            description: multipleChoiceQuiz.description,
             numberOfQuestions: multipleChoiceQuiz.multipleChoiceQuestions.length,
             multipleChoiceQuestions: multipleChoiceQuiz.multipleChoiceQuestions,
         }
@@ -97,19 +102,6 @@ export default function UpdateQuiz() {
                         value={multipleChoiceQuiz.name}
                         onChange={event => setMultipleChoiceQuiz({
                             ...multipleChoiceQuiz, name: event.target.value
-                        })}
-                    />
-                </div>
-                <div className="QuizDescription">
-                    <label htmlFor="quizDescription">Quiz Description:</label>
-                    <input
-                        type="text"
-                        id="quizDescription"
-                        name="quizDescription"
-                        placeholder="Describe your quiz here"
-                        value={multipleChoiceQuiz.description}
-                        onChange={event => setMultipleChoiceQuiz({
-                            ...multipleChoiceQuiz, description: event.target.value
                         })}
                     />
                 </div>

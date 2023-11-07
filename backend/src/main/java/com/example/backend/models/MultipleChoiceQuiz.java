@@ -12,7 +12,6 @@ public record MultipleChoiceQuiz(
         String id,
         @With
         String name,
-        String description,
         int numberOfQuestions,
         List<MultipleChoiceQuestion> multipleChoiceQuestions
 ) {

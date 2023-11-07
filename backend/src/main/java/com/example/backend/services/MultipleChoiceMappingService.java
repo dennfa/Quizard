@@ -19,7 +19,9 @@ public class MultipleChoiceMappingService {
 
         List<PlayMultipleChoiceQuestion> pmcqList = mcq.multipleChoiceQuestions()
                 .stream().map(mcQuestion -> {
-                            List<String> answers = new ArrayList<>(List.of(mcQuestion.falseAnswer(), mcQuestion.trueAnswer()));
+                            List<String> answers = new ArrayList<>();
+                            answers.add(mcQuestion.trueAnswer());
+                            answers.addAll(mcQuestion.falseAnswers());
                             Collections.shuffle(answers);
 
                             return PlayMultipleChoiceQuestion.builder()
@@ -32,7 +34,6 @@ public class MultipleChoiceMappingService {
         return PlayMultipleChoiceQuiz.builder()
                 .id(mcq.id())
                 .name(mcq.name())
-                .description(mcq.description())
                 .numberOfQuestions(mcq.numberOfQuestions())
                 .playMultipleChoiceQuestions(pmcqList)
                 .build();

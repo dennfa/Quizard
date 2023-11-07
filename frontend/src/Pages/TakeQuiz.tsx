@@ -1,3 +1,4 @@
+import '../TakeQuiz.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
@@ -7,7 +8,7 @@ export default function TakeQuiz() {
 
     const {id} = useParams();
     const [playMultipleChoiceQuiz, setPlayMultipleChoiceQuiz] = useState<PlayMultipleChoiceQuiz>({
-        id: "", name: "", description: "", numberOfQuestions: 0,
+        id: "", name: "", numberOfQuestions: 0,
         playMultipleChoiceQuestions: [],
     })
     const navigate = useNavigate()
@@ -57,14 +58,14 @@ export default function TakeQuiz() {
     const isIndexValid = index < playMultipleChoiceQuiz.playMultipleChoiceQuestions.length;
 
     return (
-        <div>
+        <div className="TakeQuiz">
             {isIndexValid ? (
                 <div>
                     <h3>{playMultipleChoiceQuiz.playMultipleChoiceQuestions[index].question}</h3>
                     {playMultipleChoiceQuiz.playMultipleChoiceQuestions[index].answers.map((answer, buttonIndex) =>
                         <button
                             type="button"
-                            key={answer + buttonIndex}
+                            key={answer}
                             onClick={() => toNextQuestion(answer, buttonIndex)}
                             disabled={disableButtons}
                             value={answer}>
