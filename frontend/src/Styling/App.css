@@ -1,0 +1,33 @@
+input:focus {
+    outline: none;
+}
+
+#root {
+    height: 100%;
+}
+
+div {
+    height: 100%;
+}
+
+body {
+    background-color: #000;
+    background-image: radial-gradient(circle, #000, #00194E);
+    background-size: cover;
+    background-attachment: fixed;
+    background-clip: border-box;
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    color: #fff;
+    margin: 0;
+    height: 100vh;
+}
+
+* {
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    hyphens: auto;
+    text-align: justify;
+    margin:0;
+}
+

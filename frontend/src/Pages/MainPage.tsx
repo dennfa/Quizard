@@ -1,4 +1,5 @@
 import {useNavigate} from "react-router-dom";
+import '../Styling/MainPage.css'
 
 export default function MainPage() {
 
@@ -6,10 +7,14 @@ export default function MainPage() {
 
 
     return (
-            <div className="MainPage">
-                <button onClick={()=>navigate("/take")}>Take a Quiz</button>
-                <button onClick={()=>navigate("/create")}>Create a Quiz</button>
-                <button onClick={()=>navigate("/update")}>Update a Quiz</button>
-                </div>
+        <div className="MainPage">
+            <h1>Quizard</h1>
+            <div className= "MainPageButtonContainer">
+            <button onClick={() => navigate("/take")}>Take Quiz</button>
+            <button onClick={() => navigate("/create")}>Create Quiz</button>
+            <button onClick={() => navigate("/update")}>Edit Quiz</button>
+            </div>
+            <button className="Login">Login</button>
+        </div>
     )
 }

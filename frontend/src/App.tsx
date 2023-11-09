@@ -1,4 +1,4 @@
-import './App.css'
+import './Styling/App.css'
 import {Navigate, Route, Routes} from "react-router-dom";
 import MainPage from "./Pages/MainPage.tsx";
 import CreateQuiz from "./Pages/CreateQuiz.tsx";

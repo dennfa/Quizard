@@ -1,4 +1,4 @@
-import '../TakeQuiz.css'
+import '../Styling/TakeQuiz.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
@@ -58,12 +58,15 @@ export default function TakeQuiz() {
     const isIndexValid = index < playMultipleChoiceQuiz.playMultipleChoiceQuestions.length;
 
     return (
-        <div className="TakeQuiz">
+        <div >
             {isIndexValid ? (
-                <div>
-                    <h3>{playMultipleChoiceQuiz.playMultipleChoiceQuestions[index].question}</h3>
+                <div className="TakeQuizContainer">
+                    <h4 className="TakeQuizQuestionCounter">Question {index + 1}/{playMultipleChoiceQuiz.numberOfQuestions}</h4>
+                    <h4 className="TakeQuizQuestion">{playMultipleChoiceQuiz.playMultipleChoiceQuestions[index].question}</h4>
+                    <div className="TakeQuizAnswersContainer">
                     {playMultipleChoiceQuiz.playMultipleChoiceQuestions[index].answers.map((answer, buttonIndex) =>
                         <button
+                            className="TakeQuizAnswerButton"
                             type="button"
                             key={answer}
                             onClick={() => toNextQuestion(answer, buttonIndex)}
@@ -72,6 +75,7 @@ export default function TakeQuiz() {
                             {answer}
                         </button>
                     )}
+                    </div>
                 </div>
             ) : (
                 <div>
@@ -80,7 +84,10 @@ export default function TakeQuiz() {
                 </div>
             )}
 
-            <button type="button" onClick={() => navigate("/")}>Quit Quiz</button>
+            <button
+                className="TakeQuizQuit"
+                type="button"
+                onClick={() => navigate("/")}>X</button>
         </div>
     )
 }

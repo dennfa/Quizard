@@ -1,0 +1,44 @@
+.MainPage {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    padding: 2em;
+    box-sizing: border-box;
+}
+
+.MainPageButtonContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.MainPageButtonContainer Button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #004d40;
+    color: white;
+    padding: 2em 1em;
+    border: solid transparent;
+    border-radius: 1em;
+    cursor: pointer;
+    height: 3em;
+    width:100%;
+}
+
+.Login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #004d40;
+    color: white;
+    padding: 2em 1em;
+    margin-top: 7em;
+    border: solid transparent;
+    border-radius: 1em;
+    cursor: pointer;
+    height: 3em;
+    width:100%;
+}

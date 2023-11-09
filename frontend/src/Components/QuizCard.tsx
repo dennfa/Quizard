@@ -7,8 +7,7 @@ export type props = {
 export default function QuizCard(props:props){
     return(
         <div className="QuizCard">
-            <h2>{props.multipleChoiceQuiz.name}</h2>
-            <p>Description: {props.multipleChoiceQuiz.description}</p>
+            <h3>{props.multipleChoiceQuiz.name}</h3>
             <p>Number of Questions: {props.multipleChoiceQuiz.numberOfQuestions}</p>
         </div>
     )
