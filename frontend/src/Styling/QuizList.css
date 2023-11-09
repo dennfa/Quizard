@@ -1,0 +1,9 @@
+.QuizListContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin: 1em 0;
+    height: 6em;
+    font-size: 1.2em;
+}

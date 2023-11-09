@@ -1,4 +1,3 @@
-import '../Styling/TakeQuiz.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
@@ -78,12 +77,11 @@ export default function TakeQuiz() {
                     </div>
                 </div>
             ) : (
-                <div>
-                    <p>Quiz is complete</p>
+                <div className="QuizCompleteScreen">
+                    <p>Quiz complete!</p>
                     <p>Score: {correctAnswers}/{playMultipleChoiceQuiz.numberOfQuestions}</p>
                 </div>
             )}
-
             <button
                 className="QuitButton"
                 type="button"

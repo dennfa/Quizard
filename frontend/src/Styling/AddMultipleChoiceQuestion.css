@@ -1,0 +1,24 @@
+.AddMultipleChoiceQuestion {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.AddMultipleChoiceQuestionElement {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    font-size: 1em;
+    width:100%;
+    height: auto;
+    gap: 1em;
+    align-items: center;
+}
+
+.AddMultipleChoiceQuestionElement input {
+    align-self: flex-end;
+    font-size: 1em;
+    padding: 0.1em;
+    border: none;
+    width: 11em;
+}

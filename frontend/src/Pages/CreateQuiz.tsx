@@ -4,6 +4,7 @@ import AddMultipleChoiceQuestion from "../Components/AddMultipleChoiceQuestion.t
 import {MultipleChoiceQuiz} from "../Models/MultipleChoiceQuiz.tsx";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import DeleteIcon from "../Assets/trash.svg"
 
 export default function CreateQuiz() {
 
@@ -61,35 +62,33 @@ export default function CreateQuiz() {
     }
 
     return (
-        <div className="CreateQuiz">
-            <form>
-                <button type="button" onClick={() => navigate("/")}>Discard Quiz</button>
-                <div className="QuizName">
+        <div className="PageContainer">
+            <h2 className="PageHeader">Create Quiz</h2>
+                <button className = "QuitButton" type="button" onClick={() => navigate("/")}>X</button>
+                <div className="CreateQuizName">
                     <label htmlFor="quizName">Quiz Name:</label>
                     <input
                         type="text"
                         id="quizName"
                         name="quizName"
-                        placeholder="Enter the name of your quiz here"
                         value={quizName}
                         onChange={event => setQuizName(event.target.value)}
                     />
                 </div>
-                <p>Current number of questions: {questions.length}</p>
+                <p className="CreateQuizNumberOfQuestions">Current number of questions: {questions.length}</p>
                 {questions.map((question: MultipleChoiceQuestion, index: number) =>
-                    <div key={index}>
+                    <div className="CreateQuizQuestion" key={index}>
+                        <img className="DeleteQuestionButton" src={DeleteIcon} alt="Delete Icon" onClick={() => handleDeleteQuestion(index)}/>
                         <AddMultipleChoiceQuestion
                             key={question + index.toString()}
                             index={index}
                             multipleChoiceQuestion={question}
                             myCallBack={myCallBackFunction}
                         />
-                        <button type="button" onClick={() => handleDeleteQuestion(index)}>Delete Question</button>
                     </div>
                 )}
-                <button type="button" onClick={handleAddQuestion}>Add Question</button>
-                <button type="button" onClick={saveQuiz}>Save Quiz</button>
-            </form>
+                <button className="AddQuestionButton" type="button" onClick={handleAddQuestion}>+</button>
+                <button className="SaveDeleteQuizButton" type="button" onClick={saveQuiz}>Save Quiz</button>
         </div>
     )
 }

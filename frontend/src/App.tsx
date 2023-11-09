@@ -1,4 +1,11 @@
 import './Styling/App.css'
+import './Styling/CreateQuiz.css'
+import './Styling/MainPage.css'
+import './Styling/QuizCard.css'
+import './Styling/AddMultipleChoiceQuestion.css'
+import './Styling/TakeQuiz.css'
+import './Styling/QuizList.css'
+
 import {Navigate, Route, Routes} from "react-router-dom";
 import MainPage from "./Pages/MainPage.tsx";
 import CreateQuiz from "./Pages/CreateQuiz.tsx";

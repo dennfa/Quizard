@@ -4,6 +4,7 @@ import axios from "axios";
 import {MultipleChoiceQuiz} from "../Models/MultipleChoiceQuiz.tsx";
 import {MultipleChoiceQuestion} from "../Models/MultipleChoiceQuestion.tsx";
 import AddMultipleChoiceQuestion from "../Components/AddMultipleChoiceQuestion.tsx";
+import DeleteIcon from "../Assets/trash.svg";
 
 export default function UpdateQuiz() {
 
@@ -28,7 +29,7 @@ export default function UpdateQuiz() {
     function handleAddQuestion() {
         const newQuestion: MultipleChoiceQuestion = {
             question: "",
-            falseAnswers: ["","",""],
+            falseAnswers: ["", "", ""],
             trueAnswer: "",
         }
         setMultipleChoiceQuiz({
@@ -90,37 +91,39 @@ export default function UpdateQuiz() {
     }
 
     return (
-        <div>
-            <form>
-                <div className="QuizName">
-                    <label htmlFor="quizName">Quiz Name:</label>
-                    <input
-                        type="text"
-                        id="quizName"
-                        name="quizName"
-                        placeholder="Enter the name of your quiz here"
-                        value={multipleChoiceQuiz.name}
-                        onChange={event => setMultipleChoiceQuiz({
-                            ...multipleChoiceQuiz, name: event.target.value
-                        })}
+        <div className="PageContainer">
+            <h2 className="PageHeader">Edit Quiz</h2>
+            <button className="QuitButton" type="button" onClick={() => navigate("/")}>X</button>
+            <div className="CreateQuizName">
+                <label htmlFor="quizName">Quiz Name:</label>
+                <input
+                    type="text"
+                    id="quizName"
+                    name="quizName"
+                    value={multipleChoiceQuiz.name}
+                    onChange={event => setMultipleChoiceQuiz({
+                        ...multipleChoiceQuiz, name: event.target.value
+                    })}
+                />
+            </div>
+            <p className="CreateQuizNumberOfQuestions">Current number of
+                questions: {multipleChoiceQuiz.multipleChoiceQuestions.length}</p>
+            {multipleChoiceQuiz.multipleChoiceQuestions.map((question: MultipleChoiceQuestion, index: number) =>
+                <div className="CreateQuizQuestion" key={index}>
+                    <img className="DeleteQuestionButton" src={DeleteIcon} alt="Delete Icon"
+                         onClick={() => handleDeleteQuestion(index)}/>
+                    <AddMultipleChoiceQuestion
+                        key={question + index.toString()}
+                        index={index}
+                        multipleChoiceQuestion={question}
+                        myCallBack={myCallBackFunction}
                     />
-                </div>
-                <p>Current number of questions: {multipleChoiceQuiz.multipleChoiceQuestions.length}</p>
-                {multipleChoiceQuiz.multipleChoiceQuestions.map((question: MultipleChoiceQuestion, index: number) =>
-                    <div key={index}>
-                        <AddMultipleChoiceQuestion
-                            key={question+index.toString()}
-                            index={index}
-                            multipleChoiceQuestion={question}
-                            myCallBack={myCallBackFunction}
-                        />
-                        <button type="button" onClick={() => handleDeleteQuestion(index)}>Delete Question</button>
-                    </div>)}
-                <button type="button" onClick={handleAddQuestion}>Add Question</button>
-                <button type="button" onClick={saveQuiz}>Save Quiz</button>
-                <button type="button" onClick={deleteQuiz}>Delete Quiz</button>
-                <button type="button" onClick={() => navigate("/update")}>Discard Changes</button>
-            </form>
+                </div>)}
+            <button className="AddQuestionButton" type="button" onClick={handleAddQuestion}>+</button>
+            <div className="SaveDeleteButtonContainer">
+                <button className="SaveDeleteQuizButton" type="button" onClick={deleteQuiz}>Delete Quiz</button>
+                <button className="SaveDeleteQuizButton" type="button" onClick={saveQuiz}>Save Quiz</button>
+            </div>
         </div>
     )
 }

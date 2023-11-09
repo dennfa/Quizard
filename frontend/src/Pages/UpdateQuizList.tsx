@@ -26,7 +26,7 @@ export default function UpdateQuizList() {
             <h2 className="PageHeader">Edit Quiz</h2>
             <img className="BackButton" onClick={()=>navigate("/")} src={BackIcon} alt="Back Icon"/>
             {multipleChoiceQuizzes.map(quiz=>
-                <div  className="QuizCardContainer" key = {quiz.id} onClick={()=>navigate("" + quiz.id)}>
+                <div  className="QuizListContainer" key = {quiz.id} onClick={()=>navigate("" + quiz.id)}>
                 <QuizCard key={quiz.id} multipleChoiceQuiz={quiz}></QuizCard>
                 </div>)}
         </div>

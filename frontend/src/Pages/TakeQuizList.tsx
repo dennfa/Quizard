@@ -26,7 +26,7 @@ export default function TakeQuizList() {
             <h2 className="PageHeader">Take Quiz</h2>
             <img className="BackButton" onClick={()=>navigate("/")} src={BackIcon} alt="Back Icon"/>
             {playMultipleChoiceQuizzes.map(quiz=>
-                <div  className="QuizCardContainer" key = {quiz.id} onClick={()=>navigate("" + quiz.id)}>
+                <div  className="QuizListContainer" key = {quiz.id} onClick={()=>navigate("" + quiz.id)}>
                     <PlayQuizCard key={quiz.id} playMultipleChoiceQuiz={quiz}></PlayQuizCard>
                 </div>)}
         </div>

@@ -19,26 +19,3 @@
     height: 4em;
     font-size: 1.3em;
 }
-
-.LoginContainer {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    justify-content: flex-end;
-}
-
-.Login {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #004d40;
-    color: white;
-    padding: 2em 1em;
-    border: solid transparent;
-    border-radius: 2em;
-    cursor: pointer;
-    height: 3em;
-    width: 100%;
-    font-size: 1em;
-}
