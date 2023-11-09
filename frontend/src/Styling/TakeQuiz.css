@@ -1,11 +1,3 @@
-.TakeQuizContainer {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 2em;
-    box-sizing: border-box;
-}
-
 .TakeQuizQuestion {
     display: flex;
     align-items: center;
@@ -42,18 +34,6 @@
 
 .TakeQuizAnswerButton:hover {
     border: solid gold;
-}
-
-.TakeQuizQuit {
-    position: absolute;
-    top: 1em;
-    right: 1em;
-    background-color: transparent;
-    color: white;
-    border: solid transparent;
-    border-radius: 2em;
-    cursor: pointer;
-    height: 2em;
 }
 
 .wrong-answer {

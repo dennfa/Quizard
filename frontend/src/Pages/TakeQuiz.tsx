@@ -60,7 +60,7 @@ export default function TakeQuiz() {
     return (
         <div >
             {isIndexValid ? (
-                <div className="TakeQuizContainer">
+                <div className="PageContainer">
                     <h4 className="TakeQuizQuestionCounter">Question {index + 1}/{playMultipleChoiceQuiz.numberOfQuestions}</h4>
                     <h4 className="TakeQuizQuestion">{playMultipleChoiceQuiz.playMultipleChoiceQuestions[index].question}</h4>
                     <div className="TakeQuizAnswersContainer">
@@ -85,7 +85,7 @@ export default function TakeQuiz() {
             )}
 
             <button
-                className="TakeQuizQuit"
+                className="QuitButton"
                 type="button"
                 onClick={() => navigate("/")}>X</button>
         </div>
