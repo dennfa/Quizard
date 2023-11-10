@@ -77,7 +77,7 @@ export default function CreateQuiz() {
             </div>
             <p className="CreateQuizNumberOfQuestions">Current number of questions: {questions.length}</p>
             {questions.map((question: MultipleChoiceQuestion, index: number) =>
-                <div className="CreateQuizQuestion" key={index}>
+                <div className="CreateQuizQuestion" key={question + index.toString()}>
                     <img
                         className="DeleteQuestionButton"
                         src={DeleteIcon}
