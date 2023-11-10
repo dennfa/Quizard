@@ -20,11 +20,13 @@ export default function TakeQuiz() {
 
         axios.post("/api/take/" + playMultipleChoiceQuiz.id, index.toString())
             .then(response => {
-                if (answer !== response.data) {
+
+                if (answer.toString() !== response.data.toString()) {
                     const buttons = document.querySelectorAll("button");
                     buttons[buttonIndex].classList.add("wrong-answer");
                 } else {
                     setCorrectAnswers(correctAnswers + 1)
+                    console.log(correctAnswers)
                 }
                 const correctAnswerButton = document.querySelector(`button[value="${response.data}"]`)
 
