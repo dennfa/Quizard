@@ -110,8 +110,18 @@ export default function UpdateQuiz() {
                 questions: {multipleChoiceQuiz.multipleChoiceQuestions.length}</p>
             {multipleChoiceQuiz.multipleChoiceQuestions.map((question: MultipleChoiceQuestion, index: number) =>
                 <div className="CreateQuizQuestion" key={index}>
-                    <img className="DeleteQuestionButton" src={DeleteIcon} alt="Delete Icon"
-                         onClick={() => handleDeleteQuestion(index)}/>
+                    <img
+                        className="DeleteQuestionButton"
+                        src={DeleteIcon}
+                        alt="Delete Icon"
+                        onClick={() => handleDeleteQuestion(index)}
+                        onKeyDown={(event) => {
+                            if (event.key === 'Enter') {
+                                handleDeleteQuestion(index);
+                            }
+                        }}
+                        tabIndex={0}
+                    />
                     <AddMultipleChoiceQuestion
                         key={question + index.toString()}
                         index={index}

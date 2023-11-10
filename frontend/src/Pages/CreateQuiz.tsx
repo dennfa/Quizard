@@ -15,7 +15,7 @@ export default function CreateQuiz() {
     function handleAddQuestion() {
         const newQuestion: MultipleChoiceQuestion = {
             question: "",
-            falseAnswers: ["","",""],
+            falseAnswers: ["", "", ""],
             trueAnswer: "",
         }
         setQuestions([...questions, newQuestion]);
@@ -64,31 +64,42 @@ export default function CreateQuiz() {
     return (
         <div className="PageContainer">
             <h2 className="PageHeader">Create Quiz</h2>
-                <button className = "QuitButton" type="button" onClick={() => navigate("/")}>X</button>
-                <div className="CreateQuizName">
-                    <label htmlFor="quizName">Quiz Name:</label>
-                    <input
-                        type="text"
-                        id="quizName"
-                        name="quizName"
-                        value={quizName}
-                        onChange={event => setQuizName(event.target.value)}
+            <button className="QuitButton" type="button" onClick={() => navigate("/")}>X</button>
+            <div className="CreateQuizName">
+                <label htmlFor="quizName">Quiz Name:</label>
+                <input
+                    type="text"
+                    id="quizName"
+                    name="quizName"
+                    value={quizName}
+                    onChange={event => setQuizName(event.target.value)}
+                />
+            </div>
+            <p className="CreateQuizNumberOfQuestions">Current number of questions: {questions.length}</p>
+            {questions.map((question: MultipleChoiceQuestion, index: number) =>
+                <div className="CreateQuizQuestion" key={index}>
+                    <img
+                        className="DeleteQuestionButton"
+                        src={DeleteIcon}
+                        alt="Delete Icon"
+                        onClick={() => handleDeleteQuestion(index)}
+                        onKeyDown={(event) => {
+                        if (event.key === 'Enter') {
+                            handleDeleteQuestion(index);
+                        }
+                    }}
+                        tabIndex={0}
+                    />
+                    <AddMultipleChoiceQuestion
+                        key={question + index.toString()}
+                        index={index}
+                        multipleChoiceQuestion={question}
+                        myCallBack={myCallBackFunction}
                     />
                 </div>
-                <p className="CreateQuizNumberOfQuestions">Current number of questions: {questions.length}</p>
-                {questions.map((question: MultipleChoiceQuestion, index: number) =>
-                    <div className="CreateQuizQuestion" key={index}>
-                        <img className="DeleteQuestionButton" src={DeleteIcon} alt="Delete Icon" onClick={() => handleDeleteQuestion(index)}/>
-                        <AddMultipleChoiceQuestion
-                            key={question + index.toString()}
-                            index={index}
-                            multipleChoiceQuestion={question}
-                            myCallBack={myCallBackFunction}
-                        />
-                    </div>
-                )}
-                <button className="AddQuestionButton" type="button" onClick={handleAddQuestion}>+</button>
-                <button className="SaveDeleteQuizButton" type="button" onClick={saveQuiz}>Save Quiz</button>
+            )}
+            <button className="AddQuestionButton" type="button" onClick={handleAddQuestion}>+</button>
+            <button className="SaveDeleteQuizButton" type="button" onClick={saveQuiz}>Save Quiz</button>
         </div>
     )
 }
