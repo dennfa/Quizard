@@ -21,7 +21,9 @@ public class MultipleChoiceService {
     }
 
     public List<MultipleChoiceQuiz> getAllQuizzes() {
-        return multipleChoiceRepo.findAll();
+
+        return multipleChoiceRepo.findAll().stream()
+                .filter(quiz->quiz.author().equals(mcms.getAuthor())).toList();
     }
 
     public List<PlayMultipleChoiceQuiz> getAllPlayQuizzes() {
