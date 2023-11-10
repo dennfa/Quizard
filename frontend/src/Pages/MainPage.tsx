@@ -47,13 +47,29 @@ export default function MainPage() {
 
     const isLoggedIn = username !== ""
 
+    function createQuiz() {
+        if (!isLoggedIn) {
+            alert("You need to be logged in to create a quiz.");
+        } else {
+            navigate("/create");
+        }
+    }
+
+    function editQuiz() {
+        if (!isLoggedIn) {
+            alert("You need to be logged in to edit a quiz.");
+        } else {
+            navigate("/update");
+        }
+    }
+
     return (
         <div className="PageContainer">
             <h1 className="PageHeader">Quizard</h1>
             <div className="MainPageActionContainer">
                 <button className="MainPageAction" onClick={() => navigate("/take")}>Take Quiz</button>
-                <button className="MainPageAction" onClick={() => navigate("/create")}>Create Quiz</button>
-                <button className="MainPageAction" onClick={() => navigate("/update")}>Edit Quiz</button>
+                <button className="MainPageAction" onClick={createQuiz}>Create Quiz</button>
+                <button className="MainPageAction" onClick={editQuiz}>Edit Quiz</button>
             </div>
             {isLoggedIn ? (
                 <div className="LoginContainer">
