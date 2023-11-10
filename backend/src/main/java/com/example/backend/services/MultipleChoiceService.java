@@ -15,6 +15,7 @@ public class MultipleChoiceService {
 
     private final MultipleChoiceRepo multipleChoiceRepo;
     private final MultipleChoiceMappingService mcms;
+    private final AuthenticationService authService;
 
     public MultipleChoiceQuiz addQuiz(MultipleChoiceQuiz multipleChoiceQuiz) {
         return multipleChoiceRepo.save(mcms.addAuthorToMultipleChoiceQuiz(multipleChoiceQuiz));
@@ -23,7 +24,7 @@ public class MultipleChoiceService {
     public List<MultipleChoiceQuiz> getAllQuizzes() {
 
         return multipleChoiceRepo.findAll().stream()
-                .filter(quiz->quiz.author().equals(mcms.getAuthor())).toList();
+                .filter(quiz->quiz.author().equals(authService.getAuthor())).toList();
     }
 
     public List<PlayMultipleChoiceQuiz> getAllPlayQuizzes() {

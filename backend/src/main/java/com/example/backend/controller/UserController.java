@@ -1,6 +1,6 @@
 package com.example.backend.controller;
 
-import com.example.backend.services.MultipleChoiceMappingService;
+import com.example.backend.services.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final MultipleChoiceMappingService mcms;
+    private final AuthenticationService authService;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public String getUserName() {
-        return mcms.getAuthor();
+        return authService.getAuthor();
     }
 }

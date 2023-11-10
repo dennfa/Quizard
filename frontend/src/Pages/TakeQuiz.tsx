@@ -7,7 +7,7 @@ export default function TakeQuiz() {
 
     const {id} = useParams();
     const [playMultipleChoiceQuiz, setPlayMultipleChoiceQuiz] = useState<PlayMultipleChoiceQuiz>({
-        id: "", name: "", numberOfQuestions: 0,
+        id: "", author: "", name: "", numberOfQuestions: 0,
         playMultipleChoiceQuestions: [],
     })
     const navigate = useNavigate()
@@ -21,14 +21,11 @@ export default function TakeQuiz() {
         axios.post("/api/take/" + playMultipleChoiceQuiz.id, index.toString())
             .then(response => {
                 if (answer !== response.data) {
-                    console.log("wrong")
                     const buttons = document.querySelectorAll("button");
                     buttons[buttonIndex].classList.add("wrong-answer");
                 } else {
-                    console.log("correct")
                     setCorrectAnswers(correctAnswers + 1)
                 }
-                console.log(response.data)
                 const correctAnswerButton = document.querySelector(`button[value="${response.data}"]`)
 
                 if (correctAnswerButton) correctAnswerButton.classList.add("correct-answer");
@@ -57,23 +54,23 @@ export default function TakeQuiz() {
     const isIndexValid = index < playMultipleChoiceQuiz.playMultipleChoiceQuestions.length;
 
     return (
-        <div >
+        <div>
             {isIndexValid ? (
                 <div className="PageContainer">
                     <h4 className="TakeQuizQuestionCounter">Question {index + 1}/{playMultipleChoiceQuiz.numberOfQuestions}</h4>
                     <h4 className="TakeQuizQuestion">{playMultipleChoiceQuiz.playMultipleChoiceQuestions[index].question}</h4>
                     <div className="TakeQuizAnswersContainer">
-                    {playMultipleChoiceQuiz.playMultipleChoiceQuestions[index].answers.map((answer, buttonIndex) =>
-                        <button
-                            className="TakeQuizAnswerButton"
-                            type="button"
-                            key={answer}
-                            onClick={() => toNextQuestion(answer, buttonIndex)}
-                            disabled={disableButtons}
-                            value={answer}>
-                            {answer}
-                        </button>
-                    )}
+                        {playMultipleChoiceQuiz.playMultipleChoiceQuestions[index].answers.map((answer, buttonIndex) =>
+                            <button
+                                className="TakeQuizAnswerButton"
+                                type="button"
+                                key={answer}
+                                onClick={() => toNextQuestion(answer, buttonIndex)}
+                                disabled={disableButtons}
+                                value={answer}>
+                                {answer}
+                            </button>
+                        )}
                     </div>
                 </div>
             ) : (
@@ -85,7 +82,8 @@ export default function TakeQuiz() {
             <button
                 className="QuitButton"
                 type="button"
-                onClick={() => navigate("/")}>X</button>
+                onClick={() => navigate("/")}>X
+            </button>
         </div>
     )
 }

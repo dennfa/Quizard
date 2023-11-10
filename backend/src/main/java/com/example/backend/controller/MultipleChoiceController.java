@@ -23,7 +23,7 @@ public class MultipleChoiceController {
     }
 
     @PostMapping("/take/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public String getCorrectAnswer(@PathVariable String id, @RequestBody String index) {
         return multipleChoiceService.getCorrectAnswer(id,index);
     }

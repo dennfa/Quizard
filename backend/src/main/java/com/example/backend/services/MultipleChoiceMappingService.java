@@ -4,9 +4,6 @@ import com.example.backend.models.MultipleChoiceQuiz;
 import com.example.backend.models.play.PlayMultipleChoiceQuestion;
 import com.example.backend.models.play.PlayMultipleChoiceQuiz;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -15,6 +12,8 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class MultipleChoiceMappingService {
+
+    private final AuthenticationService authService;
 
     public PlayMultipleChoiceQuiz mapMultipleChoiceQuizToPlayMcq(MultipleChoiceQuiz mcq) {
 
@@ -34,25 +33,16 @@ public class MultipleChoiceMappingService {
 
         return PlayMultipleChoiceQuiz.builder()
                 .id(mcq.id())
+                .author(mcq.author())
                 .name(mcq.name())
                 .numberOfQuestions(mcq.numberOfQuestions())
                 .playMultipleChoiceQuestions(pmcqList)
                 .build();
     }
 
-    public String getAuthor() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        return Optional.ofNullable(authentication)
-                .filter(auth -> auth.getPrincipal() instanceof OAuth2User)
-                .map(auth -> (OAuth2User) auth.getPrincipal())
-                .map(oauth2User -> (String) oauth2User.getAttribute("login"))
-                .orElseThrow(() -> new NoSuchElementException("Could not get login from OAuth2User"));
-    }
-
     public MultipleChoiceQuiz addAuthorToMultipleChoiceQuiz(MultipleChoiceQuiz mcq) {
         return MultipleChoiceQuiz.builder()
-                .author(getAuthor())
+                .author(authService.getAuthor())
                 .name(mcq.name())
                 .numberOfQuestions(mcq.numberOfQuestions())
                 .multipleChoiceQuestions(mcq.multipleChoiceQuestions())
