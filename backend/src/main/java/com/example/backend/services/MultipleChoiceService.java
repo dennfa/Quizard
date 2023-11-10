@@ -17,7 +17,7 @@ public class MultipleChoiceService {
     private final MultipleChoiceMappingService mcms;
 
     public MultipleChoiceQuiz addQuiz(MultipleChoiceQuiz multipleChoiceQuiz) {
-        return multipleChoiceRepo.save(multipleChoiceQuiz);
+        return multipleChoiceRepo.save(mcms.addAuthorToMultipleChoiceQuiz(multipleChoiceQuiz));
     }
 
     public List<MultipleChoiceQuiz> getAllQuizzes() {

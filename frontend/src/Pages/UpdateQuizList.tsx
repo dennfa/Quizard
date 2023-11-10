@@ -12,7 +12,7 @@ export default function UpdateQuizList() {
 
     useEffect(()=>
     {
-        axios.get("/api")
+        axios.get("/api/update")
             .then(response => {
                 setMultipleChoiceQuizzes(response.data)
             })

@@ -6,6 +6,7 @@ import java.util.List;
 @Builder
 public record PlayMultipleChoiceQuiz(
         String id,
+        String author,
         String name,
         int numberOfQuestions,
         List<PlayMultipleChoiceQuestion> playMultipleChoiceQuestions

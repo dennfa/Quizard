@@ -28,7 +28,7 @@ public class MultipleChoiceController {
         return multipleChoiceService.getCorrectAnswer(id,index);
     }
 
-    @GetMapping
+    @GetMapping("/update")
     @ResponseStatus(HttpStatus.OK)
     public List<MultipleChoiceQuiz> getAllQuizzes() {
         return multipleChoiceService.getAllQuizzes();

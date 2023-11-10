@@ -9,6 +9,7 @@ export default function PlayQuizCard(props:props){
         <div className="QuizCard">
             <h3>{props.playMultipleChoiceQuiz.name}</h3>
             <p>Number of Questions: {props.playMultipleChoiceQuiz.numberOfQuestions}</p>
+            <p>Author: {props.playMultipleChoiceQuiz.author}</p>
         </div>
     )
 }
