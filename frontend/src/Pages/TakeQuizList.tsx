@@ -24,9 +24,30 @@ export default function TakeQuizList() {
     return (
         <div className="PageContainer">
             <h2 className="PageHeader">Take Quiz</h2>
-            <img className="BackButton" onClick={()=>navigate("/")} src={BackIcon} alt="Back Icon"/>
+            <img
+                className="BackButton"
+                onClick={()=>navigate("/")}
+                src={BackIcon}
+                alt="Back Icon"
+                onKeyDown={(event) => {
+                    if (event.key === 'Enter') {
+                        navigate("/");
+                    }
+                }}
+                tabIndex={0}
+            />
             {playMultipleChoiceQuizzes.map(quiz=>
-                <div  className="QuizListContainer" key = {quiz.id} onClick={()=>navigate("" + quiz.id)}>
+                <div
+                    className="QuizListContainer"
+                    key = {quiz.id}
+                    onClick={()=>navigate("" + quiz.id)}
+                    onKeyDown={(event) => {
+                        if (event.key === 'Enter') {
+                            navigate("" + quiz.id);
+                        }
+                    }}
+                    tabIndex={1}
+                >
                     <PlayQuizCard key={quiz.id} playMultipleChoiceQuiz={quiz}></PlayQuizCard>
                 </div>)}
         </div>
