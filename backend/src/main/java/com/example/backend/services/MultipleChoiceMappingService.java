@@ -6,14 +6,14 @@ import com.example.backend.models.play.PlayMultipleChoiceQuiz;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 
 @Service
 @RequiredArgsConstructor
 public class MultipleChoiceMappingService {
+
+    private final AuthenticationService authService;
 
     public PlayMultipleChoiceQuiz mapMultipleChoiceQuizToPlayMcq(MultipleChoiceQuiz mcq) {
 
@@ -33,9 +33,19 @@ public class MultipleChoiceMappingService {
 
         return PlayMultipleChoiceQuiz.builder()
                 .id(mcq.id())
+                .author(mcq.author())
                 .name(mcq.name())
                 .numberOfQuestions(mcq.numberOfQuestions())
                 .playMultipleChoiceQuestions(pmcqList)
+                .build();
+    }
+
+    public MultipleChoiceQuiz addAuthorToMultipleChoiceQuiz(MultipleChoiceQuiz mcq) {
+        return MultipleChoiceQuiz.builder()
+                .author(authService.getAuthor())
+                .name(mcq.name())
+                .numberOfQuestions(mcq.numberOfQuestions())
+                .multipleChoiceQuestions(mcq.multipleChoiceQuestions())
                 .build();
     }
 }

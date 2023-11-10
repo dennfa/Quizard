@@ -23,12 +23,12 @@ public class MultipleChoiceController {
     }
 
     @PostMapping("/take/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public String getCorrectAnswer(@PathVariable String id, @RequestBody String index) {
         return multipleChoiceService.getCorrectAnswer(id,index);
     }
 
-    @GetMapping
+    @GetMapping("/update")
     @ResponseStatus(HttpStatus.OK)
     public List<MultipleChoiceQuiz> getAllQuizzes() {
         return multipleChoiceService.getAllQuizzes();

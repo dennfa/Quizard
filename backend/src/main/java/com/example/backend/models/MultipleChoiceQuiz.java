@@ -10,6 +10,7 @@ import java.util.List;
 public record MultipleChoiceQuiz(
         @MongoId
         String id,
+        String author,
         @With
         String name,
         int numberOfQuestions,
