@@ -1,6 +1,5 @@
 export type MultipleChoiceQuestion = {
     question:string,
-    falseAnswer:string,
+    falseAnswers:[string, string, string],
     trueAnswer:string,
-
 }

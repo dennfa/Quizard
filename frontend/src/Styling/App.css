@@ -1,0 +1,66 @@
+input:focus {
+    outline: none;
+}
+
+#root {
+    height: auto;
+}
+
+div {
+    height: auto;
+}
+
+body {
+    background-color: #000;
+    background-image: radial-gradient(circle, #000, #00194E);
+    background-size: cover;
+    background-attachment: fixed;
+    background-clip: border-box;
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    color: #fff;
+    margin: 0;
+    height: auto;
+}
+
+* {
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    hyphens: auto;
+    text-align: justify;
+    margin: 0;
+}
+
+.QuitButton {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    background-color: transparent;
+    color: white;
+    border: solid transparent;
+    border-radius: 2em;
+    cursor: pointer;
+    height: 2em;
+}
+
+.PageContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2em;
+    box-sizing: border-box;
+    height:auto;
+}
+
+.PageHeader {
+    margin-bottom: 1em;
+}
+
+.BackButton {
+    width: 1.6em;
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    height: 2em;
+    cursor: pointer;
+}

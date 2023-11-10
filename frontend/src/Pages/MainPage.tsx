@@ -6,10 +6,13 @@ export default function MainPage() {
 
 
     return (
-            <div className="MainPage">
-                <button onClick={()=>navigate("/take")}>Take a Quiz</button>
-                <button onClick={()=>navigate("/create")}>Create a Quiz</button>
-                <button onClick={()=>navigate("/update")}>Update a Quiz</button>
-                </div>
+        <div className="PageContainer">
+            <h1 className="PageHeader">Quizard</h1>
+            <div className= "MainPageActionContainer">
+            <button className="MainPageAction" onClick={() => navigate("/take")}>Take Quiz</button>
+            <button className="MainPageAction" onClick={() => navigate("/create")}>Create Quiz</button>
+            <button className="MainPageAction" onClick={() => navigate("/update")}>Edit Quiz</button>
+            </div>
+        </div>
     )
 }

@@ -15,16 +15,17 @@ import static org.mockito.Mockito.*;
 class MultipleChoiceServiceTest {
 
     MultipleChoiceRepo multipleChoiceRepo = mock(MultipleChoiceRepo.class);
-    MultipleChoiceService multipleChoiceService = new MultipleChoiceService(multipleChoiceRepo);
+    MultipleChoiceMappingService mcms = mock(MultipleChoiceMappingService.class);
+    MultipleChoiceService multipleChoiceService = new MultipleChoiceService(multipleChoiceRepo,mcms);
 
     private MultipleChoiceQuiz setUp() {
-        return new MultipleChoiceQuiz("1", "quiz", "d", 10, List.of(
-                new MultipleChoiceQuestion("q", "fa", "ta")));
+        return new MultipleChoiceQuiz("1", "quiz", 10, List.of(
+                new MultipleChoiceQuestion("q", List.of("1","2","3"), "ta")));
     }
 
     private MultipleChoiceQuiz setUpNoId() {
-        return new MultipleChoiceQuiz(null, "quiz", "d", 10, List.of(
-                new MultipleChoiceQuestion("q", "fa", "ta")));
+        return new MultipleChoiceQuiz(null, "quiz", 10, List.of(
+                new MultipleChoiceQuestion("q", List.of("1","2","3"), "ta")));
     }
 
     @Test

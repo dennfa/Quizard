@@ -1,19 +1,20 @@
 import {useEffect, useState} from "react";
-import {MultipleChoiceQuiz} from "../Models/MultipleChoiceQuiz.tsx";
 import axios from "axios";
-import QuizCard from "../Components/QuizCard.tsx";
 import {useNavigate} from "react-router-dom";
+import {PlayMultipleChoiceQuiz} from "../Models/play/PlayMultipleChoiceQuiz.tsx";
+import PlayQuizCard from "../Components/play/PlayQuizCard.tsx";
+import BackIcon from "../Assets/back.svg"
 
 export default function TakeQuizList() {
 
-    const [multipleChoiceQuizzes, setMultipleChoiceQuizzes] = useState<MultipleChoiceQuiz[]>([])
+    const [playMultipleChoiceQuizzes, setPlayMultipleChoiceQuizzes] = useState<PlayMultipleChoiceQuiz[]>([])
     const navigate = useNavigate()
 
     useEffect(()=>
     {
-        axios.get("/api")
+        axios.get("/api/take")
             .then(response => {
-                setMultipleChoiceQuizzes(response.data)
+                setPlayMultipleChoiceQuizzes(response.data)
             })
             .catch(error => {
                 console.error("Error during quiz loading: ", error)
@@ -21,10 +22,13 @@ export default function TakeQuizList() {
     },[])
 
     return (
-        <div className="TakeQuizList">
-            <button type="button" onClick={()=>navigate("/")}>Back</button>
-            {multipleChoiceQuizzes.map((quiz)=>
-                <QuizCard key={quiz.id} multipleChoiceQuiz={quiz}></QuizCard>)}
+        <div className="PageContainer">
+            <h2 className="PageHeader">Take Quiz</h2>
+            <img className="BackButton" onClick={()=>navigate("/")} src={BackIcon} alt="Back Icon"/>
+            {playMultipleChoiceQuizzes.map(quiz=>
+                <div  className="QuizListContainer" key = {quiz.id} onClick={()=>navigate("" + quiz.id)}>
+                    <PlayQuizCard key={quiz.id} playMultipleChoiceQuiz={quiz}></PlayQuizCard>
+                </div>)}
         </div>
     )
 }

@@ -1,0 +1,65 @@
+.CreateQuizName {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    font-size: 1em;
+    width: 100%;
+    height: auto;
+    margin: 1em 0;
+    gap: 1em;
+    align-items: center;
+}
+
+.CreateQuizName input {
+    align-self: flex-end;
+    font-size: 1em;
+    padding: 0.1em;
+    border: none;
+    width: 11em;
+}
+
+.CreateQuizNumberOfQuestions {
+    margin: 1em 0;
+    align-self: flex-start;
+}
+
+.CreateQuizQuestion {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1em;
+    height: 12em;
+    margin-bottom: 1.5em;
+}
+
+.AddQuestionButton {
+    background-color: transparent;
+    color: white;
+    border-radius: 1em;
+    margin: 0 0 2em 0;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.DeleteQuestionButton {
+    width: 1em;
+    height: 1em;
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+.SaveDeleteButtonContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.SaveDeleteQuizButton {
+    background-color: transparent;
+    color: white;
+    border-radius: 1em;
+    cursor: pointer;
+    font-size: 1em;
+    padding: 0.3em;
+    align-self: flex-end;
+}

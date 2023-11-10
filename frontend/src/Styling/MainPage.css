@@ -1,0 +1,21 @@
+.MainPageActionContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.MainPageAction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #004d40;
+    color: white;
+    border: solid transparent;
+    border-radius: 2em;
+    cursor: pointer;
+    width: 100%;
+    margin: 1em 0;
+    height: 4em;
+    font-size: 1.3em;
+}
