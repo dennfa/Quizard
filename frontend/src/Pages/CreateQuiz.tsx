@@ -1,11 +1,10 @@
 import {useState} from "react";
 import {MultipleChoiceQuestion} from "../Models/MultipleChoiceQuestion.tsx";
-import AddMultipleChoiceQuestion from "../Components/AddMultipleChoiceQuestion.tsx";
 import {MultipleChoiceQuiz} from "../Models/MultipleChoiceQuiz.tsx";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import DeleteIcon from "../Assets/trash.svg"
 import {multipleChoicePropertyAction} from "../Utility/Utility.tsx";
+import CreateQuizQuestion from "../Components/CreateQuizQuestion.tsx";
 
 export default function CreateQuiz() {
 
@@ -61,28 +60,13 @@ export default function CreateQuiz() {
                 />
             </div>
             <p className="CreateQuizNumberOfQuestions">Current number of questions: {questions.length}</p>
-            {questions.map((question: MultipleChoiceQuestion, index: number) =>
-                <div className="CreateQuizQuestion" key={question + index.toString()}>
-                    <img
-                        className="DeleteQuestionButton"
-                        src={DeleteIcon}
-                        alt="Delete Icon"
-                        onClick={() => handleDeleteQuestion(index)}
-                        onKeyDown={(event) => {
-                        if (event.key === 'Enter') {
-                            handleDeleteQuestion(index);
-                        }
-                    }}
-                        tabIndex={0}
-                    />
-                    <AddMultipleChoiceQuestion
-                        key={question + index.toString()}
-                        index={index}
-                        multipleChoiceQuestion={question}
-                        addMultipleChoiceQuestionCallBack={addMultipleChoiceQuestionCallBack}
-                    />
-                </div>
-            )}
+            {questions.map((question: MultipleChoiceQuestion, index: number) =>  {
+                return <CreateQuizQuestion
+                    question={question}
+                    index={index}
+                    handleDeleteQuestion={handleDeleteQuestion}
+                    addMultipleChoiceQuestionCallBack={addMultipleChoiceQuestionCallBack}
+                    />})}
             <button className="AddQuestionButton" type="button" onClick={handleAddQuestion}>+</button>
             <button className="SaveDeleteQuizButton" type="button" onClick={saveQuiz}>Save Quiz</button>
         </div>
