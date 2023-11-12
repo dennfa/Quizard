@@ -95,6 +95,7 @@ export default function UpdateQuiz() {
             {multipleChoiceQuiz.multipleChoiceQuestions.map((question: MultipleChoiceQuestion, index: number) =>
             {
                 return <CreateQuizQuestion
+                    key={question + index.toString()}
                     question={question}
                     index={index}
                     handleDeleteQuestion={handleDeleteQuestion}
