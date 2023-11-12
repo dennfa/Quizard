@@ -62,6 +62,7 @@ export default function CreateQuiz() {
             <p className="CreateQuizNumberOfQuestions">Current number of questions: {questions.length}</p>
             {questions.map((question: MultipleChoiceQuestion, index: number) =>  {
                 return <CreateQuizQuestion
+                    key={question + index.toString()}
                     question={question}
                     index={index}
                     handleDeleteQuestion={handleDeleteQuestion}

@@ -3,10 +3,10 @@ import DeleteIcon from "../Assets/trash.svg";
 import AddMultipleChoiceQuestion from "./AddMultipleChoiceQuestion.tsx";
 
 export type props = {
-    question:MultipleChoiceQuestion,
-    index:number,
-    handleDeleteQuestion:(index:number)=>void,
-    addMultipleChoiceQuestionCallBack:(userInput: string, multipleChoiceProperty: string, index: number) => void,
+    readonly question:MultipleChoiceQuestion,
+    readonly index:number,
+    readonly handleDeleteQuestion:(index:number)=>void,
+    readonly addMultipleChoiceQuestionCallBack:(userInput: string, multipleChoiceProperty: string, index: number) => void,
 }
 
 export default function CreateQuizQuestion(props:props) {
