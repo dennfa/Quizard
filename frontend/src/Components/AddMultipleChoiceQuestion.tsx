@@ -3,7 +3,7 @@ import {MultipleChoiceQuestion} from "../Models/MultipleChoiceQuestion.tsx";
 export type props = {
     readonly multipleChoiceQuestion: MultipleChoiceQuestion,
     readonly index: number,
-    readonly myCallBack: (userInput: string, multipleChoiceProperty: string, index: number) => void,
+    readonly addMultipleChoiceQuestionCallBack: (userInput: string, multipleChoiceProperty: string, index: number) => void,
 }
 
 export default function AddMultipleChoiceQuestion(props: props) {
@@ -18,7 +18,7 @@ export default function AddMultipleChoiceQuestion(props: props) {
                     name="question"
                     type="text"
                     value={props.multipleChoiceQuestion.question}
-                    onChange={event => props.myCallBack(event.target.value, "question", props.index)}
+                    onChange={event => props.addMultipleChoiceQuestionCallBack(event.target.value, "question", props.index)}
                 />
             </div>
             <div className="AddMultipleChoiceQuestionElement">
@@ -28,7 +28,7 @@ export default function AddMultipleChoiceQuestion(props: props) {
                     name="falseAnswer1"
                     type="text"
                     value={props.multipleChoiceQuestion.falseAnswers[0]}
-                    onChange={event => props.myCallBack(event.target.value, "falseAnswer1", props.index)}
+                    onChange={event => props.addMultipleChoiceQuestionCallBack(event.target.value, "falseAnswer1", props.index)}
                 />
             </div>
             <div className="AddMultipleChoiceQuestionElement">
@@ -38,7 +38,7 @@ export default function AddMultipleChoiceQuestion(props: props) {
                     name="falseAnswer2"
                     type="text"
                     value={props.multipleChoiceQuestion.falseAnswers[1]}
-                    onChange={event => props.myCallBack(event.target.value, "falseAnswer2", props.index)}
+                    onChange={event => props.addMultipleChoiceQuestionCallBack(event.target.value, "falseAnswer2", props.index)}
                 />
             </div>
             <div className="AddMultipleChoiceQuestionElement">
@@ -48,7 +48,7 @@ export default function AddMultipleChoiceQuestion(props: props) {
                     name="falseAnswer3"
                     type="text"
                     value={props.multipleChoiceQuestion.falseAnswers[2]}
-                    onChange={event => props.myCallBack(event.target.value, "falseAnswer3", props.index)}
+                    onChange={event => props.addMultipleChoiceQuestionCallBack(event.target.value, "falseAnswer3", props.index)}
                 />
             </div>
             <div className="AddMultipleChoiceQuestionElement">
@@ -58,7 +58,7 @@ export default function AddMultipleChoiceQuestion(props: props) {
                     name="trueAnswer"
                     type="text"
                     value={props.multipleChoiceQuestion.trueAnswer}
-                    onChange={event => props.myCallBack(event.target.value, "trueAnswer", props.index)}
+                    onChange={event => props.addMultipleChoiceQuestionCallBack(event.target.value, "trueAnswer", props.index)}
                 />
             </div>
         </div>

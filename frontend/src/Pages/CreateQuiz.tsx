@@ -27,7 +27,7 @@ export default function CreateQuiz() {
         setQuestions(updatedQuestions)
     }
 
-    function myCallBackFunction(userInput: string, multipleChoiceProperty: string, index: number) {
+    function addMultipleChoiceQuestionCallBack(userInput: string, multipleChoiceProperty: string, index: number) {
         const updatedQuestions = questions.slice()
         multipleChoicePropertyAction(userInput,multipleChoiceProperty,index,updatedQuestions)
         setQuestions(updatedQuestions)
@@ -79,7 +79,7 @@ export default function CreateQuiz() {
                         key={question + index.toString()}
                         index={index}
                         multipleChoiceQuestion={question}
-                        myCallBack={myCallBackFunction}
+                        addMultipleChoiceQuestionCallBack={addMultipleChoiceQuestionCallBack}
                     />
                 </div>
             )}
