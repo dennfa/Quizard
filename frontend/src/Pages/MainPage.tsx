@@ -8,7 +8,7 @@ export default function MainPage() {
     const [username, setUsername] = useState<string>("")
 
     useEffect(() => {
-        whoAmI()
+        getUsername()
     }, []);
 
     function login() {
@@ -28,7 +28,7 @@ export default function MainPage() {
             })
     }
 
-    function whoAmI() {
+    function getUsername() {
         axios.get("/api/user")
             .then((response) => {
                 setUsername(response.data)
